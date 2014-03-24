@@ -1,65 +1,26 @@
 0 info it worked if it ends with ok
-1 verbose cli [ 'node', '/usr/local/bin/npm', 'install', 'mongolab', '--save' ]
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'start' ]
 2 info using npm@1.3.21
 3 info using node@v0.10.24
-4 warn package.json crypto@0.0.3 crypto is also the name of a node core module.
-5 warn package.json filesystem@1.0.1 No description
-6 verbose readDependencies using package.json deps
-7 verbose cache add [ 'mongolab', null ]
-8 verbose cache add name=undefined spec="mongolab" args=["mongolab",null]
-9 verbose parsed url { protocol: null,
-9 verbose parsed url   slashes: null,
-9 verbose parsed url   auth: null,
-9 verbose parsed url   host: null,
-9 verbose parsed url   port: null,
-9 verbose parsed url   hostname: null,
-9 verbose parsed url   hash: null,
-9 verbose parsed url   search: null,
-9 verbose parsed url   query: null,
-9 verbose parsed url   pathname: 'mongolab',
-9 verbose parsed url   path: 'mongolab',
-9 verbose parsed url   href: 'mongolab' }
-10 silly lockFile 3b49f447-mongolab mongolab
-11 verbose lock mongolab /Users/Nelle/.npm/3b49f447-mongolab.lock
-12 silly lockFile 3b49f447-mongolab mongolab
-13 silly lockFile 3b49f447-mongolab mongolab
-14 verbose addNamed [ 'mongolab', '' ]
-15 verbose addNamed [ null, '*' ]
-16 silly lockFile 7134f9ba-mongolab mongolab@
-17 verbose lock mongolab@ /Users/Nelle/.npm/7134f9ba-mongolab.lock
-18 silly addNameRange { name: 'mongolab', range: '*', hasData: false }
-19 verbose url raw mongolab
-20 verbose url resolving [ 'https://registry.npmjs.org/', './mongolab' ]
-21 verbose url resolved https://registry.npmjs.org/mongolab
-22 info trying registry request attempt 1 at 01:27:13
-23 http GET https://registry.npmjs.org/mongolab
-24 http 404 https://registry.npmjs.org/mongolab
-25 silly registry.get cb [ 404,
-25 silly registry.get   { date: 'Mon, 24 Mar 2014 06:26:43 GMT',
-25 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R14B04)',
-25 silly registry.get     'content-type': 'application/json',
-25 silly registry.get     via: '1.1 varnish',
-25 silly registry.get     'cache-control': 'max-age=0',
-25 silly registry.get     'content-length': '52',
-25 silly registry.get     'accept-ranges': 'bytes',
-25 silly registry.get     age: '0',
-25 silly registry.get     'x-served-by': 'cache-v36-ASH, cache-d46-DAL',
-25 silly registry.get     'x-cache': 'MISS, MISS',
-25 silly registry.get     'x-cache-hits': '0, 0',
-25 silly registry.get     'x-timer': 'S1395642403.104796648,VS0,VS-193,VE-89,VE138',
-25 silly registry.get     'keep-alive': 'timeout=10, max=50',
-25 silly registry.get     connection: 'Keep-Alive' } ]
-26 silly lockFile 7134f9ba-mongolab mongolab@
-27 silly lockFile 7134f9ba-mongolab mongolab@
-28 error 404 'mongolab' is not in the npm registry.
-28 error 404 You should bug the author to publish it
-28 error 404
-28 error 404 Note that you can also install from a
-28 error 404 tarball, folder, or http url, or git url.
-29 error System Darwin 12.5.0
-30 error command "node" "/usr/local/bin/npm" "install" "mongolab" "--save"
-31 error cwd /Users/Nelle/Documents/coding/apteetude
-32 error node -v v0.10.24
-33 error npm -v 1.3.21
-34 error code E404
-35 verbose exit [ 1, true ]
+4 verbose run-script [ 'prestart', 'start', 'poststart' ]
+5 info prestart application-name@0.0.1
+6 info start application-name@0.0.1
+7 verbose unsafe-perm in lifecycle true
+8 info application-name@0.0.1 Failed to exec start script
+9 error application-name@0.0.1 start: `node app.js`
+9 error Exit status 8
+10 error Failed at the application-name@0.0.1 start script.
+10 error This is most likely a problem with the application-name package,
+10 error not with npm itself.
+10 error Tell the author that this fails on your system:
+10 error     node app.js
+10 error You can get their info via:
+10 error     npm owner ls application-name
+10 error There is likely additional logging output above.
+11 error System Darwin 12.5.0
+12 error command "node" "/usr/local/bin/npm" "start"
+13 error cwd /Users/Nelle/Documents/coding/apteetude
+14 error node -v v0.10.24
+15 error npm -v 1.3.21
+16 error code ELIFECYCLE
+17 verbose exit [ 1, true ]
