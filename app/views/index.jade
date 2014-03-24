@@ -4,4 +4,7 @@ html
 		title=Welcome
 	body
 		a(href="/auth/facebook" title="auth enticate") Log in with facebook.
-		// a(href="/user/" + req.user.id) Profile
+		if req
+			a(href="/user/" + req.user.id) Profile
+		else
+			p=welcome!
