@@ -4,3 +4,6 @@ html
 	body
 		- var name = user.name ? user.name : user.username
 		h1=name
+		
+		- var fb = user.facebook ? user.facebook : user.username
+		p=fb
