@@ -24,7 +24,7 @@ process.env.MONGOHQ_URL || 'mongodb://localhost/apteetude_dev',
     facebook: {
       clientID: "680519565341022",
       clientSecret: "2091a2c3f5ae9933a82ba538ec5bf281",
-      callbackURL: "http://localhost:3000/auth/facebook/callback"
+      callbackURL: "http://localhost:5000/auth/facebook/callback"
     }/**
     twitter: {
       clientID: "CONSUMER_KEY",
@@ -58,7 +58,7 @@ process.env.MONGOHQ_URL || 'mongodb://localhost/apteetude_test',
     facebook: {
       clientID: "680519565341022",
       clientSecret: "2091a2c3f5ae9933a82ba538ec5bf281",
-      callbackURL: "http://localhost:3000/auth/facebook/callback"
+      callbackURL: "http://localhost:5000/auth/facebook/callback"
     }/**
     twitter: {
       clientID: "CONSUMER_KEY",
