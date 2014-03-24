@@ -38,7 +38,7 @@ require('./config/express')(app, config, passport);
 require('./config/routes')(app, passport);
 
 // all environments
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 5000);
 
 
 http.createServer(app).listen(app.get('port'), function(){
