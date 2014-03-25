@@ -6,3 +6,4 @@ html
 		a(href="/auth/facebook" title="authenticate") Log in with facebook.
 		- var url = req.user ? "/users/"+req.user.id : "/"
 		a(href=url) Profile
+		a(href="/logout") Log out
