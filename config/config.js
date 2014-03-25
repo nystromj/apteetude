@@ -14,7 +14,7 @@ var path = require('path')
 
 module.exports = {
   development: {
-    db: 'mongodb://localhost/apteetude_dev',
+    db: 'mongodb://root:root@oceanic.mongohq.com:10065/app23251161',
     root: rootPath,
     //notifier: notifier,
     app: {
