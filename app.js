@@ -9,17 +9,11 @@ var express = require('express')
   , passport = require('passport');
   
 var env = process.env.NODE_ENV || 'development'
-  , config = require('./config/config')[env]
+  , config = require('./config/config')
   , mongoose = require('mongoose'); 
   
   
-mongoose.connect(config.db, { server: { socketOptions: { keepAlive: 1 } } }, function (err, res) {
-  if (err) {
-  console.log ('ERROR connecting to: ' + config.db + '. ' + err);
-  } else {
-  console.log ('Succeeded connected to: ' + config.db);
-  }
-});
+db = mongoose.connect(config.db);
 
 var models_path = __dirname + '/app/models';
 fs.readdirSync(models_path).forEach(function (file) {
@@ -29,7 +23,7 @@ fs.readdirSync(models_path).forEach(function (file) {
 require('./config/passport')(passport, config);
 
 var app = express();
-require('./config/express')(app, config, passport);
+require('./config/express')(app, passport, db);
 
 require('./config/routes')(app, passport);
 
@@ -42,7 +36,3 @@ http.createServer(app).listen(app.get('port'), function(){
 });
 
 exports = module.exports = app
-/**
-app.use(express.json());
-app.use(express.urlencoded());
-var http = require('http');**/

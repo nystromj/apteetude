@@ -6,20 +6,33 @@ var express = require('express')
   , mongoStore = require('connect-mongo')(express)
   , helpers = require('view-helpers')
   , pkg = require('../package.json')
+  , flash = require('connect-flash')
+  , config = require('./config')
 
-var env = process.env.NODE_ENV || 'development'
+//var env = process.env.NODE_ENV || 'development'
 
-module.exports = function (app, config, passport) {
+module.exports = function (app, passport, db) {
 
   app.set('showStackError', true)
+  
+  app.locals.pretty = true;
+  
+  app.use(express.compress({
+	  filter: function(req, res) {
+		  return (/json|text|javascript|css/).test(res.getHeader('Content-Type'));
+	  },
+	  level:9
+  }));
+  
+  if (process.env.NODE_ENV === 'development') {
+	  app.use(express.logger('dev'));
+  }
 
   // should be placed before express.static
   app.use(require('less-middleware')(config.root + '/public'));
 
   app.use(express.favicon())
   app.use(express.static(config.root + '/public'))
-  
-  app.use(express.logger('dev'));
 
   // set views path, template engine and default layout
   app.set('views', config.root + '/app/views')
@@ -34,6 +47,8 @@ module.exports = function (app, config, passport) {
 
     // cookieParser should be above session
     app.use(express.cookieParser());
+    app.use(express.urlencoded());
+    app.use(express.json());
 
     // bodyParser should be above methodOverride
     app.use(express.bodyParser());
@@ -41,19 +56,22 @@ module.exports = function (app, config, passport) {
 
     // express/mongo session storage
     app.use(express.session({
-      secret: pkg.name,
+      secret: config.sessionSecret,
       store: new mongoStore({
-        url: config.db,
-        collection : 'sessions'
+        db: db.connection.db,
+        collection : config.sessionCollection
       })
     }));
 
     // use passport session
     app.use(passport.initialize());
     app.use(passport.session());
+    
+    app.use(flash());
 
     // should be declared after session and flash
-    app.use(helpers(pkg.name));
+    app.use(helpers(config.app.name));
+	app.use(app.router)
 
     // adds CSRF support
     if (process.env.NODE_ENV !== 'test') {
@@ -66,15 +84,10 @@ module.exports = function (app, config, passport) {
       });
     }
     
-    app.use(app.router)
+    
     app.use(function(err, req, res, next){
 		console.error(err.stack);
 		res.send(500, 'Something broke!');
 	});
-
-  // development env config
-  app.configure('development', function () {
-    app.locals.pretty = true
-    })
-    })
-    }
+  })
+}
