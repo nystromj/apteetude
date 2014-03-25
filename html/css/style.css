@@ -35,11 +35,15 @@ body
 	color: white;
 }
 
+/* Navigation */
 .navbar 
 {
 	margin-bottom: 0;
 }
-
+.navbar li a
+{
+	font-weight: 700;
+}
 
 /* Inside primary columns: Item panels */
 .item-panel
