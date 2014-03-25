@@ -4,3 +4,5 @@ html
 		title=Welcome
 	body
 		a(href="/auth/facebook" title="authenticate") Log in with facebook.
+		- var url = req.user ? "/users/"+req.user.id : "/"
+		a(href=url) Profile

@@ -11,6 +11,12 @@ var path = require('path')
       parseAppId: 'PARSE_APP_ID',
       parseApiKey: 'PARSE_MASTER_KEY'
     }**/
+    
+    /** 
+    * - figure out jade weirdness
+    * - divide up environments in config files
+    * - figure out how to hide config files
+    **/
 
 module.exports = {
   development: {
