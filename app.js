@@ -12,16 +12,12 @@ var env = process.env.NODE_ENV || 'development'
   , config = require('./config/config')[env]
   , mongoose = require('mongoose'); 
   
-var uristring =
-process.env.MONGOLAB_URI ||
-process.env.MONGOHQ_URL ||
-'mongodb://localhost/apteetude_dev';
   
-mongoose.connect(uristring, { server: { socketOptions: { keepAlive: 1 } } }, function (err, res) {
+mongoose.connect(config.db, { server: { socketOptions: { keepAlive: 1 } } }, function (err, res) {
   if (err) {
-  console.log ('ERROR connecting to: ' + uristring + '. ' + err);
+  console.log ('ERROR connecting to: ' + config.db + '. ' + err);
   } else {
-  console.log ('Succeeded connected to: ' + uristring);
+  console.log ('Succeeded connected to: ' + config.db);
   }
 });
 
@@ -38,7 +34,7 @@ require('./config/express')(app, config, passport);
 require('./config/routes')(app, passport);
 
 // all environments
-app.set('port', process.env.PORT || 5000);
+app.set('port', process.env.PORT || 3000);
 
 
 http.createServer(app).listen(app.get('port'), function(){

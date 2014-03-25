@@ -75,6 +75,6 @@ module.exports = function (app, config, passport) {
   // development env config
   app.configure('development', function () {
     app.locals.pretty = true
-  });
-  });
-}
+    })
+    })
+    }

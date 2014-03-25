@@ -89,9 +89,8 @@ exports.create = function (req, res) {
 exports.show = function (req, res) {
   var user = req.profile
   res.render('users/show', {
-    title: user.name,
-    facebook: user.facebook,
-    user: user
+    name: user.name,
+    user: user  
   })
 }
 
