@@ -75,11 +75,24 @@ body
 	background-color: #ffdd66;
 }
 /* Item (t-shirt) colors */
+.item-white, .item-black, .item-blue
+{
+	background-position: center;
+	background-repeat: no-repeat;
+}
 .item-white /* Show a white t-shirt */
 {
 	background-image: url('../img/t-white.png');
-	background-position: center;
-	background-repeat: no-repeat;
+	
+}
+.item-black
+{
+	background-image: url('../img/t-black.png');
+}
+.item-blue
+{
+	background-image: url('../img/t-blue.png');
+
 }
 
 /* Buy now button */
