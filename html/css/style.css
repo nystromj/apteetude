@@ -1,0 +1,92 @@
+/* Home Primary Columns and Branding */
+.store-primary-col 
+{
+	margin: 0;
+	padding: 0;
+	border: 1px solid #ffffff;
+}
+
+.home-brand
+{
+	height: 80px;
+	background-image: url('../img/home-logo.png');
+	background-repeat: no-repeat;
+	background-position:center; 
+}
+
+.home-brand, .home-brand-secondary {
+	background-color: #000000;
+	padding: 20px;
+	margin-bottom: 1px;
+	text-align: center;
+}
+.home-brand-secondary
+{
+	margin-top: 2px;
+	font-size: 24px;
+	color: white;
+}
+
+.navbar 
+{
+	margin-bottom: 0;
+}
+
+
+/* Inside primary columns: Item panels */
+.item-panel
+{
+	padding: 10px;
+	height: 375px;
+	position: relative;
+}
+
+/* Item-panel colors */
+.panel-red
+{
+	background-color: #fd5151;
+}
+.panel-blue
+{
+	background-color: #1ccafd;
+}
+.panel-green
+{
+	background-color: #5ad294;
+}
+.panel-purple
+{
+	background-color: #f383f2;
+}
+.panel-yellow
+{
+	background-color: #ffdd66;
+}
+/* Item (t-shirt) colors */
+.item-white /* Show a white t-shirt */
+{
+	background-image: url('../img/t-white.png');
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+/* Buy now button */
+.buy-now
+{
+	position: absolute;
+	bottom: 50px;
+	right: 0;
+	
+	color: #ffffff;
+	font-size: 18px;
+	padding: 5px;
+	background-color: #000000;
+	border-bottom: 2px solid #81ed81;
+}
+
+/* Footer */
+footer#store-footer
+{
+	position: fixed;
+	bottom: 0;
+}
