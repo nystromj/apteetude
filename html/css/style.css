@@ -5,6 +5,15 @@ body
 	font-family: 'Lora', serif;
 }
 
+/*
+	Headers, etc.
+*/
+
+.edit-design-header
+{
+	margin-left: 10px;
+}
+
 /* Home Primary Columns and Branding */
 .store-primary-col 
 {
@@ -51,6 +60,16 @@ body
 	padding: 10px;
 	height: 375px;
 	position: relative;
+}
+.item-panel-clickable
+{
+	/* These item panels are clickable */
+	cursor: pointer;
+}
+.item-panel-clickable:hover
+{
+	/* We ought to make this a more pleasing color. */
+	background-color: #be4444;
 }
 
 /* Item-panel colors */
