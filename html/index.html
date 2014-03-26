@@ -4,7 +4,11 @@
 <head>
     <title>Auteematic</title><!-- Just for testing purposes -->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
+
     <link href='http://fonts.googleapis.com/css?family=Lora' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Permanent+Marker' rel='stylesheet' type='text/css'>
+
     <link rel="stylesheet" href="./css/style.css" type="text/css">
 </head>
 
@@ -31,12 +35,16 @@
 
                     <li><a href="#">Contact</a></li>
                 </ul>
-
                 <form class="navbar-form navbar-right" role="search">
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="Search Store">
                     </div>
                 </form>
+                <div class="navbar-right">
+					<ul class="nav navbar-nav">
+                		<li><a href="#">Logged in as Paul Graham</a></li>
+                	</ul>
+                </div>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
     </nav>
@@ -51,6 +59,11 @@
             
             <!-- Now, let's add some of the panels. -->
             <div class="item-panel panel-red item-white">
+            	<div class="template">
+            		<div class="img" style="background-image: url('img/hello-name.png');height:150px;">
+	            		<div class="first-name rotate-30" style="padding-top:75px;transform:rotate(-9deg);-ms-transform:rotate(-9deg);-webkit-transform:rotate(-9deg);font-size:22px;font-family:'Permanent Marker', cursive;">Paul</div>
+            		</div>
+            	</div>
 	            <div class="buy-now">buy now $20</div>
             </div>
             <div class="item-panel panel-blue item-blue">
@@ -61,6 +74,12 @@
 
         <div id="col-second" class="store-primary-col col-md-4">
 	        <div class="item-panel panel-blue item-black">
+	        	<div class="template" style="font-family:'Droid Sans', sans-serif;color:#ffffff;font-weight:700;line-height:27px;">
+						<div class="img" style="background-image:url('img/crown.png');height:20px"></div>
+						<div style="font-size:25px;">PROUD</div>
+						<div style="font-size:21px;word-spacing:1px">TO BE A</div>
+						<div class="last-name uppercase" style="font-size:22px;line-height:30px">Graham</div>
+	        	</div>
 		        <div class="buy-now">buy now $20</div>
 	        </div>
 	        <div class="item-panel panel-green item-white">

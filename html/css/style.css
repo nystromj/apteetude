@@ -115,3 +115,25 @@ footer#store-footer
 	position: fixed;
 	bottom: 0;
 }
+
+/* Templates */
+.template
+{
+	text-align: center;
+	/* By default, templates start a certain px from the top of the panel */
+	margin-top: 70px;
+	position: relative;
+	/* Make some transparency, so that it looks realistic */
+	opacity:.85;
+}
+
+.uppercase
+{
+	text-transform: uppercase;
+}
+
+.img
+{
+	background-repeat:no-repeat;
+	background-position:center;	
+}
