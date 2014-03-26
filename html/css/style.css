@@ -131,7 +131,10 @@ footer#store-footer
 {
 	text-transform: uppercase;
 }
-
+.strong
+{
+	font-weight: 700;
+}
 .img
 {
 	background-repeat:no-repeat;
