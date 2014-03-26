@@ -3,15 +3,16 @@ var mongoose = require('mongoose')
   , crypto = require('crypto')
   , oAuth = ['facebook'];
 
+/** User model for storing user data **/
 var UserSchema = new Schema({
-  name: { type: String, default: '' },
-  email: { type: String, default: '' },
-  username: { type: String, default: '' },
-  provider: { type: String, default: '' },
-  hashed_password: { type: String, default: '' },
+  name: { type: String, default: '' }, // name of the user
+  email: { type: String, default: '' }, // email address
+  username: { type: String, default: '' }, // username for default login
+  provider: { type: String, default: '' }, // provider if authenticating
+  hashed_password: { type: String, default: '' }, 
   salt: { type: String, default: '' },
-  authToken: { type: String, default: '' },
-  facebook: {}
+  authToken: { type: String, default: '' }, // authentication token for social network
+  facebook: {} // fills in with facebook data
 })
 
 /**
