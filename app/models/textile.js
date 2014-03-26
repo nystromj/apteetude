@@ -17,7 +17,7 @@ var TextileSchema = new Schema({
   imgurl: String, // url to generate image from
   impressions: { type: Number, default: 0 }, // number of impressions for this product
   clicks: { type: Number, default: 0 }, // number of clicks for this product
-  style-fields: {}, // css fields for styling texts
+  style_fields: {}, // css fields for styling texts
 })
 
 mongoose.model('Textile', TextileSchema);
