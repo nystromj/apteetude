@@ -1,11 +1,3 @@
-/*
-	#Todo:
-	
-	foreach of the customizable divs:
-		while width > 150:
-			font-size--;
-*/
-
 jQuery(document).ready(function($) {
 	
 	var draggie = new Draggabilly( document.getElementById('editing-pane'), {
@@ -40,9 +32,6 @@ jQuery(document).ready(function($) {
 		/* Hide and Show the appropriate elements */
 		$('.store-primary-col').hide('slow');
 		$(el).removeClass('item-panel-clickable');
-		// Move some things around, change some colors:
-		$('.editing-container').css('backgroundColor', $(el).css('backgroundColor'));
-		
 		$('.buy-now').hide();
 		$('#editing-screen #edit-template').html($(el).parent().html());
 		$('#editing-options').html('');
@@ -50,8 +39,7 @@ jQuery(document).ready(function($) {
 	
 		
 		/* Create the editing area */
-		var template = $(el).find('.template');
-		fields = template.attr('data-fields');
+		fields = $(el).find('.template').attr('data-fields');
 		if (fields != 'undefined')
 		{
 			fields = fields.split(',');
@@ -63,25 +51,40 @@ jQuery(document).ready(function($) {
 			{
     			
     			elementsWrap = document.createElement('div');
-    			
-    			// This default text is going to be incorrect if there are overlaps.
-    			// E.g. if there is "place" for home and college, they will override.
-    			// Therefore, it must be within the template that it finds the default text only.
-    			defText = template.find('.' + field).html();
-    			
+    			defText = $('.' + field).html();
+    			/*
+    			<div class="input-group">
+				  <span class="input-group-addon">@</span>
+				  <input type="text" class="form-control" placeholder="Username">
+				</div>
+				*/
 				newEl = document.createElement('input');
 				newEl.type = 'text';
 				elWrap = document.createElement('div');
+							
+				inputAddon = document.createElement('span');
+				$(inputAddon).addClass('input-group-addon')
+					.html('<a href="#" class="generate-random glyphicon glyphicon-random"' +
+						' data-field="' + field +  '" title="Randomize!"></a>');
+
+					
+				
+				inputGroup = document.createElement('div');
+				$(inputGroup).addClass('input-group')
+					.append(newEl);
+					.append(inputAddon);
+				
 				label = document.createElement('label');
 				label.innerHTML = field.charAt(0).toUpperCase() + field.slice(1);;
 				newEl.value = defText;
 				
 				// Use jQuery from here, because they didn't teach me JS properly.
+				newEl.id = "text-customizer-" + field;
 				$(newEl).addClass('form-control customizer');
 				$(newEl).attr('data-model', field);
 				$(elWrap).addClass('form-group');
 				$(elWrap).append(label);
-    			$(elWrap).append(newEl);
+    			$(elWrap).append(inputGroup);
     			
     			$(elementsWrap).append(elWrap);
     			// Now we append all the usual suspects, too.
@@ -92,6 +95,7 @@ jQuery(document).ready(function($) {
 				
 				
 				addTextCustomizeListeners();
+				
 			});
 		} // if
 		// Otherwise, would be weird.
@@ -277,6 +281,17 @@ jQuery(document).ready(function($) {
 			$('.' + $(this).attr('data-model'))
 				.text($(this).val());
 		}); // keyup
+		
+		$('.generate-random').click(function ()
+		{
+			var field = $(this).attr('data-field');	
+			// Now, request from server a random value of this field
+			// Let's say that it returns John:
+			var response = "John";
+			$('.' + $(this).attr('data-field')).text(response);
+			$('#text-customizer-' + $(this).attr('data-field')).val(response);
+		});
+		
 	} // addCustomizeListeners
 	
 	var hexDigits = new Array

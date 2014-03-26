@@ -4,7 +4,10 @@ body
 {
 	font-family: 'Lora', serif;
 }
-
+.main
+{
+	height: 100%;
+}
 /*
 	Headers, etc.
 */
@@ -14,6 +17,14 @@ body
 	margin-left: 10px;
 }
 
+.editing-container
+{
+	height: 100%;
+}
+#editing-screen
+{
+	height: 100%;
+}
 /* Home Primary Columns and Branding */
 .store-primary-col 
 {
@@ -70,6 +81,9 @@ body
 {
 	/* We ought to make this a more pleasing color. */
 	background-color: #be4444;
+}
+.item-panel-full
+{
 }
 
 /* Item-panel colors */
@@ -140,10 +154,12 @@ footer#store-footer
 {
 	text-align: center;
 	/* By default, templates start a certain px from the top of the panel */
-	margin-top: 70px;
 	position: relative;
 	/* Make some transparency, so that it looks realistic */
 	opacity:.85;
+	width: 150px;
+	margin: 0 auto;
+	margin-top: 70px;
 }
 
 .uppercase
@@ -217,4 +233,20 @@ footer#store-footer
 	-webkit-border-radius: 4px !important;
 	-moz-border-radius: 4px !important;
 	border-radius: 4px !important;
+}
+
+/* Checkout pane */
+
+#checkout-pane
+{
+/* Structure */
+	width: 300px;
+	position: absolute;
+	top: 300px;
+	left: 50%;
+	margin-left: 200px;
+	/* Style */
+	background-color: white;
+	border-radius: 4px;
+	border: 1px solid #eee;
 }
