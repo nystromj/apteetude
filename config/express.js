@@ -31,7 +31,7 @@ module.exports = function (app, passport, db) {
   // should be placed before express.static
   app.use(require('less-middleware')(config.root + '/public'));
 
-  app.use(express.favicon())
+  //app.use(express.favicon())
   app.use(express.static(config.root + '/public'))
 
   // set views path, template engine and default layout
