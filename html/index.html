@@ -1,216 +1,30 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
 
 <html>
 <head>
     <title>Auteematic</title><!-- Just for testing purposes -->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" type="text/css">
-	<link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
-
-    <link href='http://fonts.googleapis.com/css?family=Lora' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Permanent+Marker' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
-	<link href='http://fonts.googleapis.com/css?family=Francois+One' rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=Indie+Flower' rel='stylesheet' type='text/css'>
-
-
-    <link rel="stylesheet" href="./css/style.css" type="text/css">
-    
 </head>
 
 <body>
-    <nav class="navbar navbar-inverse" role="navigation">
-        <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
 
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"><span class="sr-only">Toggle navigation</span></button> <a class="navbar-brand" href="#"><img src="./img/button_topbar1.png"></a>
-            </div><!-- Collect the nav links, forms, and other content for toggling -->
+<div class="container-fluid">
+	<div class="">Log in with Facebook</div>
+	
+	<div style="width:300px">
+		<h3>Try an example:</h3>
+		<div class="col-md-6">
+			<a href="/html/example/paul/?view=store">
+				<span class="glyphicon glyphicon-user"></span> View as Paul
+			</a>
+		</div>
+		<div class="col-md-6">
+			<a href="/html/example/jessica/?view=store">
+				<span class="glyphicon glyphicon-user"></span> View as Jessica
+			</a>
+		</div>
+	</div>
+</div>
 
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Store</a></li>
-
-                    <li><a href="#">About</a></li>
-
-                    <li><a href="#">How it works</a></li>
-
-                    <li><a href="#">Pricing</a></li>
-
-                    <li><a href="#">Shipping</a></li>
-
-                    <li><a href="#">Contact</a></li>
-                </ul>
-                <form class="navbar-form navbar-right" role="search">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search Store">
-                    </div>
-                </form>
-                <div class="navbar-right">
-					<ul class="nav navbar-nav">
-                		<li><a href="#">Logged in as Paul Graham</a></li>
-                	</ul>
-                </div>
-            </div><!-- /.navbar-collapse -->
-        </div><!-- /.container-fluid -->
-    </nav>
-
-    <div class="main">
-        <div id="col-first" class="store-primary-col col-md-4">
-            <div class="home-brand"></div>
-
-            <div class="home-brand-secondary">
-                "T-shirts made just for you"
-            </div>
-            
-            <!-- Now, let's add some of the panels. -->
-            <div class="item-panel-wrapper">
-				<div class="item-panel item-panel-clickable panel-red item-white">
-            	<div class="template">
-            		<div class="img" style="background-image: url('img/hello-name.png');height:150px;">
-	            		<div class="first-name rotate-30" style="padding-top:75px;transform:rotate(-9deg);-ms-transform:rotate(-9deg);-webkit-transform:rotate(-9deg);font-size:22px;font-family:'Permanent Marker', cursive;">Paul</div>
-            		</div>
-            	</div>
-	            <div class="buy-now">buy now $20</div></div>
-            </div>
-            <div class="item-panel-wrapper">
-<div class="item-panel item-panel-clickable panel-blue item-blue">
-            	<div class="template" style="padding-top:12px;color:white;font-family:'Roboto', sans-serif;font-size:16px;font-weight:700">
-            		<div>trust me,</div>
-            		<div>i'm an <span class="profession">engineer</span></div>
-            	</div>
-	            <div class="buy-now">buy now $20</div></div>
-            </div>
-            
-        </div>
-
-        <div id="col-second" class="store-primary-col col-md-4">
-	        <div class="item-panel-wrapper">
-<div class="item-panel item-panel-clickable panel-blue item-black">
-	        	<div class="template" style="font-family:'Droid Sans', sans-serif;color:#ffffff;font-weight:700;line-height:27px;">
-						<div class="img" style="background-image:url('img/crown.png');height:20px"></div>
-						<div style="font-size:25px;">PROUD</div>
-						<div style="font-size:21px;word-spacing:1px">TO BE A</div>
-						<div class="last-name uppercase" style="font-size:22px;line-height:30px">Graham</div>
-	        	</div>
-		        <div class="buy-now">buy now $20</div></div>
-	        </div>
-	        <div class="item-panel-wrapper">
-<div class="item-panel item-panel-clickable panel-green item-white">
-	        	<div class="template uppercase" 
-	        		style="font-size: 36px;font-family: 'Francois One', sans-serif;">
-	        		<div>I 
-	        			<span class="img" style="display:inline-block;background-image: url('img/heart.png');height:20px;width:20px"></span>
-	        		</div>
-	        		<div class="hobbie">Yoga</div>
-	        	</div>
-		        <div class="buy-now">buy now $20</div></div>
-	        </div>
-        </div>
-
-        <div id="col-third" class="store-primary-col col-md-4">
-	        <div class="item-panel-wrapper">
-<div class="item-panel item-panel-clickable panel-purple item-white">
-	        	<div class="template" style="padding-top:7px;font-size:23px;line-height:25px;font-family: 'Indie Flower', cursive;">
-	        		<div>Daydreaming</div>
-	        		<div>of</div>
-	        		<div class="place-recent uppercase strong">Sydney</div>
-	        	</div>
-		        <div class="buy-now">buy now $20</div></div>
-	        </div>
-	        <div class="item-panel-wrapper">
-<div class="item-panel item-panel-clickable panel-yellow item-blue">
-	        	<div class="template uppercase strong" style="padding-top:10px;font-size: 28px;line-height:30px;color:#ffffff;font-family:'Droid Sans', sans-serif;text-shadow: 1px 1px 0 #c6a018;">
-	        		<div class="major">Math</div>
-	        		<div>Nerd</div>
-	        		
-	        	</div>
-		        <div class="buy-now">buy now $20</div></div>
-	        </div>
-        </div>
-
-        <div class="clearfix"></div>
-        
-        <div id="editing-screen" style="display:none;">
-        
-        	<h2 class="edit-design-header">Edit Design</h2>
-	        <div id="edit-template">
-	        
-	        </div>
-        </div>
-    </div><!-- main
-        <nav class="navbar navbar-inverse navbar-bottom" role="navigation">
-            <div class="container-fluid">
-                <!== Brand and toggle get grouped for better mobile display -->
-
-    <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"><span class="sr-only">Toggle navigation</span></button>
-    </div>
-
-    <footer id="store-footer">
-        <nav class="navbar navbar-inverse" role="navigation">
-            <div class="container-fluid">
-
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-
-                    <li><a href="#">Show me more</a></li>
-
-                    <li><a href="#">Names</a></li>
-
-                    <li><a href="#">Places</a></li>
-
-                    <li><a href="#">Professions</a></li>
-
-                    <li><a href="#">Sports</a></li>
-                    
-                    <li><a href="#">Movies, Books etc.</a></li>
-                </ul>
-
-            </div><!-- /.navbar-collapse -->
-        </nav>
-    </footer><!-- /.container-fluid -->
-    
-    
-    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-    <script type="text/javascript">
-    	jQuery(document).ready(function($)
-    	{
-    		// Set the current state.
-    		history.pushState({view: 'store'}, 'Store front', '?view=store');
-    		
-	    	$('.item-panel-clickable').click(function ()
-	    	{
-	    		// Hide all other item panels
-		    	$('.store-primary-col').hide('slow');
-		    	$(this).removeClass('item-panel-clickable');
-		    	$('.buy-now').hide();
-		    	
-		    	$('#editing-screen #edit-template').html($(this).parent().html());
-		    	$('#editing-screen').show();
-		    	
-		    	// Now, push a new browser state into history.
-		    	var designID = 'ID-1'; // just an example; update with real #todo
-		    	var state = {
-			    	view: 'design',
-			    	designID: designID
-		    	};
-		    	history.pushState(state, 'Edit Design', '?view=edit&item=' + designID);
-		    	
-	    	});
-	    	
-	    	// On browser changing states:
-	    	window.addEventListener("popstate", function(e) {
-	    		var state = e.state;
-	    		if (state.view == 'store')
-	    		{
-	    			$('#editing-screen').hide();
-	    			$('.store-primary-col').show();
-		    		$('.buy-now').show();
-		    		$('.item-panel').addClass('item-panel-clickable');
-	    		}
-	    	});
-	    	
-    	}); // jquery
-    </script>
 </body>
 </html>
