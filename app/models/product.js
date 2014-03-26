@@ -4,9 +4,9 @@ var mongoose = require('mongoose')
 /** a product is a combination of a design and a textile that we use to populate the store pages */
 var ProductSchema = new Schema({
   design: { type: Schema.ObjectId, ref: 'Design' }, // the design text to display
-  fields: { type: String, ref: 'Field', default: design.fields[0] }, // which fields to display for user
+  fields: { type: String, ref: 'Field', default: this.design.fields[0] }, // which fields to display for user
   textile: { type: Schema.ObjectId, ref: 'Textile' }, // which textile to use
-  style: { type: String, ref: 'Textile', default: textile.style } // CSS object for style
+  style: { type: String, ref: 'Textile', default: this.textile.style } // CSS object for style
 })
 
 mongoose.model('Product', ProductSchema);
