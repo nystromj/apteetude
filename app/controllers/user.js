@@ -26,7 +26,7 @@ exports.authCallback = login
  */
 
 exports.login = function (req, res) {
-  res.render('users/login', {
+  res.render('user/login', {
     title: 'Login',
     message: req.flash('error')
   })
@@ -37,7 +37,7 @@ exports.login = function (req, res) {
  */
 
 exports.signup = function (req, res) {
-  res.render('users/signup', {
+  res.render('user/signup', {
     title: 'Sign up',
     user: new User()
   })
@@ -67,7 +67,7 @@ exports.create = function (req, res) {
   user.provider = 'local'
   user.save(function (err) {
     if (err) {
-      return res.render('users/signup', {
+      return res.render('user/signup', {
         error: utils.errors(err.errors),
         user: user,
         title: 'Sign up'
@@ -88,11 +88,20 @@ exports.create = function (req, res) {
 
 exports.show = function (req, res) {
   var user = req.profile
-  res.render('users/show', {
+  res.render('user/show', {
     name: user.name,
     user: user  
   })
 }
+
+exports.store = function (req, res)
+{
+  var user = req.profile
+  res.render('user/store/', {
+    name: user.name,
+    user: user  
+  })
+} // store
 
 /**
  * Find user by id

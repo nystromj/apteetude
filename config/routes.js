@@ -8,7 +8,7 @@ var async = require('async')
  * Controllers
  */
 
-var users = require('../app/controllers/users')
+var user = require('../app/controllers/user')
   , main = require('../app/controllers/main')
   , auth = require('./middlewares/authorization')
   , example = require('../app/controllers/example')
@@ -22,29 +22,29 @@ module.exports = function (app, passport) {
   // Graeme adding routes for examples:
   app.get('/example/paul', example.paul)
   app.get('/example/jessica', example.jessica)
-	
+  
   // user routes
-  app.get('/login', users.login)
-  app.get('/signup', users.signup)
-  app.get('/logout', users.logout)
-  app.post('/users', users.create)
-  app.post('/users/session',
+  app.get('/login', user.login)
+  app.get('/signup', user.signup)
+  app.get('/logout', user.logout)
+  app.post('/user', user.create)
+  app.post('/user/session',
     passport.authenticate('local', {
       failureRedirect: '/login',
       failureFlash: 'Invalid email or password.'
-    }), users.session)
-  app.get('/users/:userId', users.show)
+    }), user.session)
+  app.get('/user/:userId', user.store)
   app.get('/auth/facebook',
     passport.authenticate('facebook', {
       scope: [ 'email', 'user_about_me'],
       failureRedirect: '/login'
-    }), users.signin)
+    }), user.signin)
   app.get('/auth/facebook/callback',
     passport.authenticate('facebook', {
       failureRedirect: '/login'
-    }), users.authCallback)
+    }), user.authCallback)
 
-  app.param('userId', users.user)
+  app.param('userId', user.user)
 
   // home route
   app.get('/', main.index)

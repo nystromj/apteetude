@@ -33,6 +33,12 @@ jQuery(document).ready(function($) {
 		$(template).attr('data-fields', templateData.fields);
 		template.className = 'template';
 		template.innerHTML = templateData.html;
+		
+		// Replace the template text with the default for user:
+		console.log("fields: " + templateData.fields + " and default: " +  templateData.defaults);
+    $('.' + templateData.fields).html(templateData.defaults);
+		
+		
 		$(templateBg).append(template);
 		$(templateBg).append(priceTag);
 		return templateBg;
@@ -168,7 +174,7 @@ jQuery(document).ready(function($) {
 			view: 'design',
 			designID: designID
 		};
-		history.pushState(state, 'Edit Design', '?view=edit&item=' + designID);
+		history.pushState(state, 'Edit Design', '/store/item/' + designID + '?text=' + defText);
 	} // showEditing(element)
 	
 	function appendUsualSuspects(field, elWrap, templateId)

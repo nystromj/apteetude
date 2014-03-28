@@ -12,6 +12,12 @@ var example = function (req, res) {
 exports.paul = function (req, res) {
   res.render('example/paul', {
     title: 'Login',
+    firstName: 'Paul',
+    lastName: 'Graham',
+    profession: 'Engineer',
+    placeRecent: 'Sydney',
+    hobbie: 'Yoga',
+    major: 'Math',
     message: req.flash('error')
   })
 }
