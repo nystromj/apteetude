@@ -9,7 +9,8 @@ exports.get_school = function (template, field, user_field) {
 		details: {
 			page: user_field.school.id,
 			year: get_field(user_field.year, 'name'),
-			concentration: user_field.concentration ? user_field.concentration.forEach
+			//concentration: user_field.concentration ? user_field.concentration.forEach
+			short_name: user_field.school.name.replace(" College", '').replace(' University', '')
 			//short_name: name.replace("College", '').replace('University', ''),
 			//location: freebase_url
 			//masot: freebase_url
