@@ -1,5 +1,5 @@
 var path = require('path')
-  , rootPath = path.resolve(path.normalize(__dirname + '/../../apteetude/'));
+  , rootPath = path.normalize(__dirname + '/../..');
 
 module.exports = {
 	root: rootPath,
