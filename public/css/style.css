@@ -188,9 +188,12 @@ footer#store-footer
 	position: relative;
 	/* Make some transparency, so that it looks realistic */
 	opacity:.85;
-	width: 150px;
+	width: 140px;
 	margin: 0 auto;
 	margin-top: 70px;
+	
+	/* Word wrap: break word if doesn't fit into printable area */
+	word-wrap: break-word;
 }
 
 .uppercase
