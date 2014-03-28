@@ -163,9 +163,11 @@ a.signin-facebook:hover
   text-decoration: none;
   color:#ffffff;
 }
+/* When pressed, look like being pressed */
 a.signin-facebook:active
 {
 	border-bottom-width: 1px;
+	margin-bottom: 1px;
 }
 
 /* Buy now button */
