@@ -38,78 +38,38 @@ jQuery(document).ready(function($) {
 		return templateBg;
 	} // createTemplate ()
 	
-	var templates = [
-		{
-			id: 1,
-			fields: "first-name",
-			html: '<div style="transform:rotate(-9deg);-ms-transform:rotate(-9deg);-webkit-transform:rotate(-9deg);"><div class="img" style="background-image: url(\'../../img/hello-name.png\');height:70px;"><div class="first-name" style="padding-top:28px;font-size:18px;font-family:\'Permanent Marker\', cursive;">Paul</div></div></div>',
-			background: "panel-red item-white",
-			price: 20
-		},
-		{
-			id: 2,
-			fields: "profession",
-			html: '<div style="padding-top:12px;color:white;font-family:\'Roboto\', sans-serif;font-size:16px;font-weight:700"><div>trust me,</div><div>i\'m an <span class="profession">engineer</span></div></div>',
-			background: "panel-blue item-blue",
-			price: 20
-		},
-		{
-			id: 3,
-			fields: "last-name",
-			html: '<div style="font-family:\'Droid Sans\',sans-serif;color:#ffffff;font-weight:700;line-height:27px;"><div class="img" style="background-image:url(\'../../img/crown.png\');height:20px"></div><div style="font-size:25px;">PROUD</div><div style="font-size:21px;word-spacing:1px">TO BE A</div><div class="last-name uppercase" style="font-size:22px;line-height:30px">Graham</div></div>',
-			background: "panel-blue item-black",
-			price: 20
-		},
-		{
-			id: 4,
-			fields: "hobbie",
-			html: '<div class="uppercase" style="font-size: 58px;line-height:60px;font-family: \'Francois One\', sans-serif;"><div>I <span class="img" style="display:inline-block;background-image: url(\'../../img/heart.png\');height:50px;width:57px"></span></div><div class="hobbie">Yoga</div></div></div>',
-			background: "panel-green item-white",
-			price: 20
-		},
-		{
-			id: 5,
-			fields: "place",
-			html: '<div class="uppercase" style="padding-top:7px;font-size:23px;line-height:25px;font-family: \'Indie Flower\', cursive;"><div>Daydreaming</div><div>of</div><div class="place place-recent uppercase strong">Sydney</div></div>',
-			background: "panel-purple item-white",
-			price: 20
-		},
-		{
-			id: 6,
-			fields: "major",
-			html: '<div class="uppercase strong" style="padding-top:10px;font-size: 28px;line-height:30px;color:#ffffff;font-family:\'Droid Sans\', sans-serif;text-shadow: 1px 1px 0 #c6a018;"><div class="major">Math</div><div>Nerd</div></div>',
-			background: "panel-yellow item-blue",
-			price: 20
-		}
-	];
 	
 	var count = 0;
 	var wrappedTemplate;
 	
-	$.each(templates, function (index, templateData)
+	if (templates != undefined)
 	{
-		wrappedTemplate = wrapTemplate(createTemplate(templateData));
-		if (count < 2)
+		$.each(templates, function (index, templateData)
 		{
-			$('#col-first').append(wrappedTemplate);
-			count++;
-		}
-		else if (count < 4)
-		{
-			$('#col-second').append(wrappedTemplate);
-			count++;
-		}
-		else if (count < 6)
-		{
-			$('#col-third').append(wrappedTemplate);
-			count++;
-		}
-		else
-		{
-			count = 0;
-		}
-		
-	});
+			wrappedTemplate = wrapTemplate(createTemplate(templateData));
+			if (count < 2)
+			{
+				$('#col-first').append(wrappedTemplate);
+				count++;
+			}
+			else if (count < 4)
+			{
+				$('#col-second').append(wrappedTemplate);
+				count++;
+			}
+			else if (count < 6)
+			{
+				$('#col-third').append(wrappedTemplate);
+				count++;
+			}
+			else
+			{
+				count = 0;
+			}
+			
+		});
+	}
+	
 	
 	
 	var draggie = new Draggabilly( document.getElementById('editing-pane'), {
