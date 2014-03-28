@@ -12,17 +12,31 @@ var mongoose = require('mongoose')
  
 
 var create_property = function(property, network, user) {
-	// check if property exists
-	var property = new Property ({
-		info: property.info,
-		name: property.name,
-		network: network, 
-		details: property.details,
-		user: user.details,
-		user: user
-	})
-	property.save(function(err) {
-		if (err) console.log(err)
+	Property.findOne({"meta.facebook_id": property.meta.facebook_id}, function (err, db_prop) {
+		if (err) {return done(err)}
+		if (db_prop) {
+			var prop = new Property ({
+				info: property.info,
+				name: db_prop.name,
+				network: network, 
+				meta: db_prop.meta,
+				details: property.details,
+				user: user
+			})
+		}
+		else {
+			var prop = new Property ({
+				info: property.info,
+				name: property.name,
+				network: network, 
+				meta: property.meta,
+				details: property.details,
+				user: user
+			})
+		} 
+		prop.save(function(err) {
+			if (err) console.log(err)
+		})
 	})
 }
   
@@ -95,7 +109,6 @@ module.exports = function (passport, config) {
         if (err) { return done(err) }
         console.log("logging in with facebook")
         if (!user) {
-          console.log("There's a new user!")
           user = new User({
             name: profile.displayName,
             email: profile.emails[0].value,
@@ -111,7 +124,6 @@ module.exports = function (passport, config) {
           })
         }
         else {
-          console.log("there's an old user!")
           return done(err, user)
         }
       })

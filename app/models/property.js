@@ -6,6 +6,7 @@ var PropertySchema = new Schema({
   info: { type: String, default: '' }, // field categy: "age", "location", etc.
   name: String,
   network: String, 
+  meta: {},
   details: {}, 
   created: { type: Date, default: Date.now }, 
   user: { type: Schema.ObjectId, ref: 'User' }

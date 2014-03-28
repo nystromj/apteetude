@@ -6,14 +6,17 @@ exports.get_school = function (template, field, user_field) {
 	school = {
 		info: user_field.type, 
 		name: user_field.school.name,
-		details: {
-			page: user_field.school.id,
-			year: get_field(user_field.year, 'name'),
+		meta: {
+			facebook_id: user_field.school.id,
 			short_name: user_field.school.name.replace(" College", '').replace(' University', '')
 			//location: freebase_url
 			//masot: freebase_url
 			//nickname: freebase_url,
 			//slogan: freebase_url	
+		},
+		details: {
+			year: get_field(user_field.year, 'name'),
+
 		}	
 	}
 	if (user_field.concentration) {
@@ -24,13 +27,15 @@ exports.get_school = function (template, field, user_field) {
 				result.push({
 					info:'concentration', 
 					name: concentration.name, 
-					details: {page: concentration.id, school: user_field.school.name}});	
+					meta: {facebook_id: concentration.id},
+					details: {school: user_field.school.name}});	
 			}
 		}
 		else result.push({
 			info:'concentration', 
 			name: concentration.name, 
-			details: {page: concentration.id, school: user_field.school.name}});
+			meta: {facebook_id: concentration.id},
+			details: {school: user_field.school.name}});
 		return result
 	}
 	else 
@@ -41,17 +46,16 @@ exports.get_workplace = function (template, field, user_field) {
 	work = {
 		info: field,
 		name: user_field.employer.name,
-		details: {
-			employer_page: user_field.employer.id,
-			employer_location: get_field(user_field.location, 'name')
-		}
+		meta: {facebook_id: user_field.employer.id},
+		details: {employer_location: get_field(user_field.location, 'name')}
 	}
 	if (user_field.position) {
 		result = [work]
 		result.push({
 			info: 'position',
 			name: user_field.position.name,
-			details: {page: user_field.position.id, employer: user_field.employer.name}});
+			meta: {facebook_id: user_field.position.id},
+			details: {employer: user_field.employer.name}});
 		return result
 	}
 	else return work
@@ -59,14 +63,13 @@ exports.get_workplace = function (template, field, user_field) {
 
 exports.get_city = function (template, field, user_field) {
 	return {
-		info: field,
+		info: 'city',
 		name: user_field.name,
-		details: {
-			page: user_field.id
+		meta: {facebook_id: user_field.id},
+		details: { relationship: field }
 			//skills: freebase url for position
 			// nickname: freebase,
 			//slogan: freebase
-		}
 	}
 }
 
