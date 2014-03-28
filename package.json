@@ -29,6 +29,7 @@
     "grunt-concurrent": "~0.5.0",
     "grunt-env": "~0.4.1",
     "grunt-cli": "~0.1.13",
-    "livereload": "~0.3.3"
+    "livereload": "~0.3.3",
+    "ejs": "~1.0.0"
   }
 }

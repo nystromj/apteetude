@@ -14,4 +14,4 @@ var DesignSchema = new Schema({
   clicks: { type: Number, default: 0 } // number of clickthroughs
 })
 
-mongoose.model('Design', DesignSchema);
+mongoose.model('Design', DesignSchema, 'designs');
