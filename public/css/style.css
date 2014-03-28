@@ -131,6 +131,43 @@ body
 	
 }
 
+/* Facebook Sign in button */
+.signin-facebook
+{
+	border-radius: 0;
+	padding: 11px 15px 10px 15px;
+	width: 200px;
+	text-align: right;
+	background-color: #4c66a4;
+	color: #ffffff;
+	display: inline-block;
+	border-bottom: 2px solid #3A538F;
+	font-family: "Lucide Grande", Helvetica, sans-serif;
+	font-size: 12px;
+	
+	/* Center it */
+	margin: 0 auto;
+}
+a.signin-facebook:hover
+{
+	text-decoration: none;
+	color:#ffffff;
+}
+a.signin-facebook:active
+{
+	border-bottom-width: 1px;
+}
+
+.signin-facebook:before {
+	content: "";
+	background-image: url('../img/signinFacebook.svg');
+	left: 20px;
+	position: absolute;
+	width: 29px;
+	height: 29px;
+	top: 5px;
+}
+
 /* Buy now button */
 .buy-now
 {
