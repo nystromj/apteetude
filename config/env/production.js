@@ -6,7 +6,7 @@ module.exports = {
     facebook: {
         clientID: '680519565341022',
         clientSecret: '2091a2c3f5ae9933a82ba538ec5bf281',
-        callbackURL: 'http://auteematic.com/auth/facebook/callback'
+        callbackURL: 'http://www.auteematic.com/auth/facebook/callback'
     },
     twitter: {
         clientID: 'CONSUMER_KEY',
