@@ -2,7 +2,7 @@
 
 <html>
 <head>
-    <title>Auteematic</title><!-- Just for testing purposes -->
+    <title><%- title %></title><!-- Just for testing purposes -->
     <link href='http://fonts.googleapis.com/css?family=Lora' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="css/style.css" type="text/css">
@@ -10,24 +10,27 @@
 
 <body>
     <div class="container-fluid">
-        <div class="" style="width:100%;">
+        <div class="" style="width:500px; margin: 0 auto;">
             <a href="/auth/facebook" class="signin-facebook" title="authenticate with Facebook">Log in with <strong>Facebook</strong></a>
-        </div><!--
+        </div>
+        
+        <%- loggedIn %>
+        <!--
 a(href="" title="authenticate") Log in with facebook.
         - var url = req.user ? "/users/"+req.user.id : "/"
         a(href=url) Profile
         a(href="/logout") Log out
 -->
 
-        <div style="width:300px">
+        <div style="width:500px; margin: 0 auto;">
             <h3>Try an example:</h3>
 
             <div class="col-md-6">
-                <a href="./example/paul/?view=store">View as Paul</a>
+                <a href="./example/paul/?view=store"><span class="glyphicon glyphicon-user"></span> Sign in as Paul</a>
             </div>
 
             <div class="col-md-6">
-                <a href="./example/jessica/?view=store">View as Jessica</a>
+                <a href="./example/jessica/?view=store"><span class="glyphicon glyphicon-user"></span> Sign in as Jessica</a>
             </div>
         </div>
     </div>

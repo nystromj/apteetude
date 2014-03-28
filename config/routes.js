@@ -19,9 +19,9 @@ var users = require('../app/controllers/users')
 
 module.exports = function (app, passport) {
 	
-	// Graeme adding routes for examples:
-	app.get('/example/paul', example.paul)
-	app.get('/example/jessica', example.jessica)
+  // Graeme adding routes for examples:
+  app.get('/example/paul', example.paul)
+  app.get('/example/jessica', example.jessica)
 	
   // user routes
   app.get('/login', users.login)
