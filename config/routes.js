@@ -11,13 +11,18 @@ var async = require('async')
 var users = require('../app/controllers/users')
   , main = require('../app/controllers/main')
   , auth = require('./middlewares/authorization')
+  , example = require('../app/controllers/example')
 
 /**
  * Expose routes
  */
 
 module.exports = function (app, passport) {
-
+	
+	// Graeme adding routes for examples:
+	app.get('/example/paul', example.paul)
+	app.get('/example/jessica', example.jessica)
+	
   // user routes
   app.get('/login', users.login)
   app.get('/signup', users.signup)
