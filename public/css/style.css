@@ -71,6 +71,8 @@ body
 	padding: 10px;
 	height: 375px;
 	position: relative;
+	background-position: center;
+	background-repeat: no-repeat;
 }
 .item-panel-clickable
 {
@@ -108,11 +110,7 @@ body
 	background-color: #ffdd66;
 }
 /* Item (t-shirt) colors */
-.item-white, .item-black, .item-blue
-{
-	background-position: center;
-	background-repeat: no-repeat;
-}
+
 .item-white /* Show a white t-shirt */
 {
 	background-image: url('../img/t-white.png');
@@ -126,6 +124,11 @@ body
 {
 	background-image: url('../img/t-blue.png');
 
+}
+
+.tshirt-female-blue
+{
+	
 }
 
 /* Buy now button */
