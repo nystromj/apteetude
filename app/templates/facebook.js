@@ -3,38 +3,58 @@ var get_field = function (field, data) {
 }
 
 exports.get_school = function (template, field, user_field) {
-	return {
+	school = {
 		info: user_field.type, 
 		name: user_field.school.name,
 		details: {
 			page: user_field.school.id,
 			year: get_field(user_field.year, 'name'),
-			//concentration: user_field.concentration ? user_field.concentration.forEach
 			short_name: user_field.school.name.replace(" College", '').replace(' University', '')
-			//short_name: name.replace("College", '').replace('University', ''),
 			//location: freebase_url
 			//masot: freebase_url
 			//nickname: freebase_url,
 			//slogan: freebase_url	
 		}	
 	}
+	if (user_field.concentration) {
+		result = [school]
+		if (user_field.concentration instanceof Array) {
+			for (var i = 0; i <user_field.concentration.length; i++) {
+				concentration = user_field.concentration[i]
+				result.push({
+					info:'concentration', 
+					name: concentration.name, 
+					details: {page: concentration.id, school: user_field.school.name}});	
+			}
+		}
+		else result.push({
+			info:'concentration', 
+			name: concentration.name, 
+			details: {page: concentration.id, school: user_field.school.name}});
+		return result
+	}
+	else 
+		return school
 }
 
 exports.get_workplace = function (template, field, user_field) {
-	return {
+	work = {
 		info: field,
 		name: user_field.employer.name,
 		details: {
 			employer_page: user_field.employer.id,
-			employer_location: get_field(user_field.location, 'name'),
-			position: get_field(user_field.position, 'name'),
-			position_page: get_field(user_field.position, 'id')
-			// state: freebase_url,
-			// country: freebase_url,
-			// nationality: freebase_url,
-			// notable: freebase_url
+			employer_location: get_field(user_field.location, 'name')
 		}
 	}
+	if (user_field.position) {
+		result = [work]
+		result.push({
+			info: 'position',
+			name: user_field.position.name,
+			details: {page: user_field.position.id, employer: user_field.employer.name}});
+		return result
+	}
+	else return work
 }
 
 exports.get_city = function (template, field, user_field) {

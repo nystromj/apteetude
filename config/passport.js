@@ -9,6 +9,22 @@ var mongoose = require('mongoose')
   , Property = mongoose.model('Property')
   , path = require('path')
   , template_path = path.resolve(path.normalize(__dirname+'/../app/templates/'));
+ 
+
+var create_property = function(property, network, user) {
+	// check if property exists
+	var property = new Property ({
+		info: property.info,
+		name: property.name,
+		network: network, 
+		details: property.details,
+		user: user.details,
+		user: user
+	})
+	property.save(function(err) {
+		if (err) console.log(err)
+	})
+}
   
 var populate_data = function (network, user, network_helper, field, user_data) {
 	var template = network_helper.template
@@ -20,25 +36,17 @@ var populate_data = function (network, user, network_helper, field, user_data) {
 	else {
 		data = eval("network_helper." + template[field] + "(template, field, user_data)")
 		// check if property exists, if not, save
-		var property = new Property({
-			info: data.info,
-			name: data.name,
-			network: network,
-			details: data.details,
-			user: user
-		})
-		property.save(function (err) {
-            if (err) console.log(err)
-            //res.jsonp(property);
-            //return done(err, user)
-        })
+		if (data instanceof Array) {
+			data.forEach(function(x) {create_property(x, network, user)})
+		}
+		else create_property(data, network, user)
 	}
 }
    
 var process_profile = function (network, user, user_profile) {
 	network_helper = require(path.normalize(template_path + "/" + network + '.js'))
 	for (var field in network_helper.template) {
-		if (user_profile.hasOwnProperty(field)) {
+		if (field in user_profile) {
 			populate_data(network, user, network_helper, field, user_profile[field]);
 		}
 	}
