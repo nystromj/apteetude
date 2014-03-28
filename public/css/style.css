@@ -79,11 +79,6 @@ body
 	/* These item panels are clickable */
 	cursor: pointer;
 }
-.item-panel-clickable:hover
-{
-	/* We ought to make this a more pleasing color. */
-	background-color: #be4444;
-}
 .item-panel-full
 {
 }
@@ -136,7 +131,7 @@ body
 {
 	border-radius: 0;
 	padding: 11px 15px 10px 15px;
-	width: 200px;
+	width: 190px;
 	text-align: right;
 	background-color: #4c66a4;
 	color: #ffffff;
@@ -145,27 +140,23 @@ body
 	font-family: "Lucide Grande", Helvetica, sans-serif;
 	font-size: 12px;
 	
-	/* Center it */
-	margin: 0 auto;
+	/* Facebook Log Image in Background */
+	background-image: url('../img/signinFacebook.svg');
+	background-repeat: no-repeat;
+	background-position-x: 5px;
+	background-position-y: 5px;
+	
+  /* Center it */
+  margin: 0 auto;
 }
 a.signin-facebook:hover
 {
-	text-decoration: none;
-	color:#ffffff;
+  text-decoration: none;
+  color:#ffffff;
 }
 a.signin-facebook:active
 {
 	border-bottom-width: 1px;
-}
-
-.signin-facebook:before {
-	content: "";
-	background-image: url('../img/signinFacebook.svg');
-	left: 20px;
-	position: absolute;
-	width: 29px;
-	height: 29px;
-	top: 5px;
 }
 
 /* Buy now button */

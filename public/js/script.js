@@ -312,4 +312,77 @@ jQuery(document).ready(function($) {
 		return isNaN(x) ? "00" : hexDigits[(x - x % 16) / 16] + hexDigits[x % 16];
 	}
 	
+	
+	$('.item-panel-clickable').mouseover(function () 
+	{
+  	  var color = $(this).css("backgroundColor");
+  	  $(this).attr('data-color-origin', color);
+  	  color = color.replace(/[^0-9,]+/g, "");
+      var red = color.split(",")[0];
+      var gre = color.split(",")[1];
+      var blu = color.split(",")[2];
+      
+      var hsv = RgbToHsv(red,gre,blu);
+      var darkerRGB = HsvToRgb(hsv.h, hsv.s, 75);
+      color = "rgb(" + darkerRGB.r + "," + darkerRGB.g + "," + darkerRGB.b + ")";
+      
+      $(this).css('backgroundColor', color);
+      
+        
+	}) // mouseover
+	.mouseout(function ()
+	{
+	  // Set back to original color
+    $(this).css('backgroundColor', $(this).attr('data-color-origin'));
+  	
+	}); // mouseout
+	
+	function RgbToHsv(r, g, b) 
+	{
+    var min = Math.min(r, g, b),
+        max = Math.max(r, g, b),
+        delta = max - min,
+        h, s, v = max;
+
+    v = Math.floor(max / 255 * 100);
+    if (max == 0) return [0, 0, 0];
+    s = Math.floor(delta / max * 100);
+    var deltadiv = delta == 0 ? 1 : delta;
+    if( r == max ) h = (g - b) / deltadiv;
+    else if(g == max) h = 2 + (b - r) / deltadiv;
+    else h = 4 + (r - g) / deltadiv;
+    h = Math.floor(h * 60);
+    if( h < 0 ) h += 360;
+    return { h: h, s:s, v:v }
+    }
+
+function HsvToRgb(h, s, v) {
+    h = h / 360;
+    s = s / 100;
+    v = v / 100;
+    
+    if (s == 0)
+    {
+        var val = Math.round(v * 255);
+        return {r:val,g:val,b:val};
+    }
+    hPos = h * 6;
+    hPosBase = Math.floor(hPos);
+    base1 = v * (1 - s);
+    base2 = v * (1 - s * (hPos - hPosBase));
+    base3 = v * (1 - s * (1 - (hPos - hPosBase)));
+    if (hPosBase == 0) {red = v; green = base3; blue = base1}
+    else if (hPosBase == 1) {red = base2; green = v; blue = base1}
+    else if (hPosBase == 2) {red = base1; green = v; blue = base3}
+    else if (hPosBase == 3) {red = base1; green = base2; blue = v}
+    else if (hPosBase == 4) {red = base3; green = base1; blue = v}
+    else {red = v; green = base1; blue = base2};
+        
+    red = Math.round(red * 255);
+    green = Math.round(green * 255);
+    blue = Math.round(blue * 255);
+    return {r:red,g:green,b:blue};
+}
+	
+	
 }); // jquery
