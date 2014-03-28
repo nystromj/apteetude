@@ -7,6 +7,7 @@ var mongoose = require('mongoose')
 var UserSchema = new Schema({
   name: { type: String, default: '' }, // name of the user
   email: { type: String, default: '' }, // email address
+  gender: { type: String, default: '' },
   username: { type: String, default: '' }, // username for default login
   provider: { type: String, default: '' }, // provider if authenticating
   hashed_password: { type: String, default: '' }, 
