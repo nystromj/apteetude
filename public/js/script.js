@@ -323,7 +323,7 @@ jQuery(document).ready(function($) {
       var blu = color.split(",")[2];
       
       var hsv = RgbToHsv(red,gre,blu);
-      var darkerRGB = HsvToRgb(hsv.h, hsv.s, 70);
+      var darkerRGB = HsvToRgb(hsv.h, hsv.s, 75);
       color = "rgb(" + darkerRGB.r + "," + darkerRGB.g + "," + darkerRGB.b + ")";
       
       $(this).css('backgroundColor', color);
@@ -337,7 +337,8 @@ jQuery(document).ready(function($) {
   	
 	}); // mouseout
 	
-	function RgbToHsv(r, g, b) {
+	function RgbToHsv(r, g, b) 
+	{
     var min = Math.min(r, g, b),
         max = Math.max(r, g, b),
         delta = max - min,
@@ -353,7 +354,8 @@ jQuery(document).ready(function($) {
     h = Math.floor(h * 60);
     if( h < 0 ) h += 360;
     return { h: h, s:s, v:v }
-}
+    }
+
 function HsvToRgb(h, s, v) {
     h = h / 360;
     s = s / 100;

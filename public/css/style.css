@@ -79,12 +79,6 @@ body
 	/* These item panels are clickable */
 	cursor: pointer;
 }
-.item-panel-clickable:hover
-{
-	/* We ought to make this a more pleasing color. */
-	/* background-color: #be4444; */
-	opacity: 0.9;
-}
 .item-panel-full
 {
 }
