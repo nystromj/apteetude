@@ -14,7 +14,7 @@ var PropertySchema = new Schema({
 
 PropertySchema.statics.list = function(options, callback) {
   var criteria = options.criteria || {}
-  this.find(criteria).exec(callback);
+  this.find(criteria).lean().exec(callback);
 };
 
 mongoose.model('Property', PropertySchema, 'properties'); 

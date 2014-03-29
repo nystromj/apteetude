@@ -14,20 +14,21 @@ var login = function (req, res) {
   res.redirect(redirectTo)
 }
 
-var get_property = function (json, field) {
-  for (var i = 0; i<json.length; i++){
-    if (json[i].info == field)
-      return json[i]
-  }
+var parse_properties = function(properties) {
+  result = {}
+  properties.forEach(function(x) {
+    result[x.info] = x
+  })
+  return result
 }
 
 var render_designs = function (user, properties) {
 	var results = []
 	results.push("Hello my name is " + user.facebook.first_name);
-  results.push("Dreaming of " + get_property(properties, "College").meta.short_name);
-  results.push(get_property(properties, "concentration").name + " Nerd");
-  results.push("I <3" + get_property(properties, "work").name);
-  results.push("Ask me about " + get_property(properties, "concentration").name);
+  results.push("Dreaming of " + properties.College.meta.short_name);
+  results.push(properties.concentration.name + " Nerd");
+  results.push("I <3 " + properties.work.name);
+  results.push("Ask me about " + properties.concentration.name);
 	return results
 }
 
@@ -117,11 +118,11 @@ exports.store = function (req, res) {
   var options = {criteria: {'user': req.profile.id}}
   Property.list(options, function (err, properties) {
     if (err) return res.send('oops')
-    var designs = render_designs(user, properties)
+    var designs = render_designs(user, parse_properties(properties))
     res.render('user/store', {
       designs: designs,
-      name: user.name
-    })
+      name:user.name
+    }) 
   }) 
 }
 
