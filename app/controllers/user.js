@@ -132,6 +132,7 @@ exports.show = function (req, res)
   res.render('user/show', {
     name: user.name,
     user: user,
+    userID: user.id,
   })
 } // store **/
 
