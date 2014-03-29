@@ -118,18 +118,18 @@ exports.store = function (req, res) {
   Property.list(options, function (err, properties) {
     if (err) return res.send('oops')
     var designs = render_designs(user, properties)
-    res.render('user/show', {
+    res.render('user/store', {
       designs: designs,
       name: user.name
     })
   }) 
 }
-/**
-exports.store = function (req, res)
+
+exports.show = function (req, res)
 {
   var user = req.profile
   properties = 
-  res.render('user/store/', {
+  res.render('user/show', {
     name: user.name,
     user: user,
   })
