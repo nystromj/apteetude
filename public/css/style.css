@@ -36,7 +36,7 @@ body
 .home-brand
 {
 	height: 80px;
-	background-image: url('../img/logo.png');
+	background-image: url('../img/logo-scale.png');
 	background-repeat: no-repeat;
 	background-position:center; 
 }
@@ -147,6 +147,7 @@ body
 	border-bottom: 2px solid #3A538F;
 	font-family: "Lucide Grande", Helvetica, sans-serif;
 	font-size: 12px;
+	text-decoration: none;
 	
 	/* Facebook Log Image in Background */
 	background-image: url('../img/signinFacebook.svg');
@@ -162,9 +163,11 @@ a.signin-facebook:hover
   text-decoration: none;
   color:#ffffff;
 }
+/* When pressed, look like being pressed */
 a.signin-facebook:active
 {
 	border-bottom-width: 1px;
+	margin-bottom: 1px;
 }
 
 /* Buy now button */
