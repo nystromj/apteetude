@@ -5,12 +5,30 @@
 
 var mongoose = require('mongoose')
   , User = mongoose.model('User')
+  , Property = mongoose.model('Property')
   , utils = require('../../lib/utils')
 
 var login = function (req, res) {
   var redirectTo = req.session.returnTo ? req.session.returnTo : '/'
   delete req.session.returnTo
   res.redirect(redirectTo)
+}
+
+var get_property = function (json, field) {
+  for (var i = 0; i<json.length; i++){
+    if (json[i].info == field)
+      return json[i]
+  }
+}
+
+var render_designs = function (user, properties) {
+	var results = []
+	results.push("Hello my name is " + user.facebook.first_name);
+  results.push("Dreaming of " + get_property(properties, "College").meta.short_name);
+  results.push(get_property(properties, "concentration").name + " Nerd");
+  results.push("I <3" + get_property(properties, "work").name);
+  results.push("Ask me about " + get_property(properties, "concentration").name);
+	return results
 }
 
 exports.signin = function (req, res) {}
@@ -94,14 +112,28 @@ exports.show = function (req, res) {
   })
 }
 
+exports.store = function (req, res) {
+  var user = req.profile
+  var options = {criteria: {'user': req.profile.id}}
+  Property.list(options, function (err, properties) {
+    if (err) return res.send('oops')
+    var designs = render_designs(user, properties)
+    res.render('user/show', {
+      designs: designs,
+      name: user.name
+    })
+  }) 
+}
+/**
 exports.store = function (req, res)
 {
   var user = req.profile
+  properties = 
   res.render('user/store/', {
     name: user.name,
-    user: user  
+    user: user,
   })
-} // store
+} // store **/
 
 /**
  * Find user by id

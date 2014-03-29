@@ -1,5 +1,5 @@
 var get_field = function (field, data) {
-	return field ? field.data : 'NULL'
+	return field ? field.data : null
 }
 
 exports.get_school = function (template, field, user_field) {

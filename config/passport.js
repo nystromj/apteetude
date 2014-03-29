@@ -115,7 +115,7 @@ module.exports = function (passport, config) {
             gender: profile.gender,
             username: profile.username,
             provider: 'facebook',
-            //facebook: profile._json
+            facebook: profile._json
           })   
           process_profile('facebook', user, profile._json)
           user.save(function (err) {

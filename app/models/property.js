@@ -12,6 +12,11 @@ var PropertySchema = new Schema({
   user: { type: Schema.ObjectId, ref: 'User' }
 })
 
+PropertySchema.statics.list = function(options, callback) {
+  var criteria = options.criteria || {}
+  this.find(criteria).exec(callback);
+};
+
 mongoose.model('Property', PropertySchema, 'properties'); 
 
 // state
