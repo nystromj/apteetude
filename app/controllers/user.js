@@ -5,12 +5,31 @@
 
 var mongoose = require('mongoose')
   , User = mongoose.model('User')
+  , Property = mongoose.model('Property')
   , utils = require('../../lib/utils')
 
 var login = function (req, res) {
   var redirectTo = req.session.returnTo ? req.session.returnTo : '/'
   delete req.session.returnTo
   res.redirect(redirectTo)
+}
+
+var parse_properties = function(properties) {
+  result = {}
+  properties.forEach(function(x) {
+    result[x.info] = x
+  })
+  return result
+}
+
+var render_designs = function (user, properties) {
+	var results = []
+	results.push("Hello my name is " + user.facebook.first_name);
+  results.push("Dreaming of " + properties.College.meta.short_name);
+  results.push(properties.concentration.name + " Nerd");
+  results.push("I <3 " + properties.work.name);
+  results.push("Ask me about " + properties.concentration.name);
+	return results
 }
 
 exports.signin = function (req, res) {}
@@ -94,14 +113,29 @@ exports.show = function (req, res) {
   })
 }
 
-exports.store = function (req, res)
+exports.store = function (req, res) {
+  var user = req.profile
+  var options = {criteria: {'user': req.profile.id}}
+  Property.list(options, function (err, properties) {
+    if (err) return res.send('oops')
+    var designs = render_designs(user, parse_properties(properties))
+    res.render('user/store', {
+      designs: designs,
+      name:user.name
+    }) 
+  }) 
+}
+
+exports.show = function (req, res)
 {
   var user = req.profile
-  res.render('user/store/', {
+  properties = 
+  res.render('user/show', {
     name: user.name,
-    user: user  
+    user: user,
+    userID: user.id,
   })
-} // store
+} // store **/
 
 /**
  * Find user by id
