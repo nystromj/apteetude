@@ -1,9 +1,11 @@
 <%= include header %>
 <style>
 body{
-  background-color: black;
-  color: white;
+  color: #000;
   margin-top: 50px;
+  background-image: url('img/home-bg.jpg');
+  background-repeat:no-repeat;
+  background-position:center;
 }
 .home-brand
 {
@@ -33,7 +35,7 @@ a(href="" title="authenticate") Log in with facebook.
 -->
 
   <div class="row-fluid">
-        <div class="col-md-8 col-md-offset-2" style="padding-bottom:40px;border-bottom:1px solid white;">
+        <div class="col-md-6 col-md-offset-3" style="padding-bottom:40px;border-bottom:1px solid white;">
           <div class="home-brand col-md-12"></div>
           <div class="clearfix"></div>
           <div class="home-brand-secondary">"T-shirts made just for you"</div>
@@ -43,7 +45,7 @@ a(href="" title="authenticate") Log in with facebook.
             <a href="/auth/facebook" class="signin-facebook" title="authenticate with Facebook">Log in with <strong>Facebook</strong></a>
         </div>
         
-        <div class="col-lg-7 col-lg-offset-3" style="padding:10px 0; text-align:center;">
+        <div class="col-md-12" style="padding:10px 0; text-align:center;">
             <div class="col-md-4">        
               <strong style="font-size:14px;"><em>View a sample store:</em></strong>
             </div>
