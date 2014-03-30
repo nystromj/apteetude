@@ -231,18 +231,12 @@ a.signin-facebook:active
 .buy-now
 {
 	position: absolute;
-	top: 50px;
+	top: 10px;
 	right: 0;
 	
-	background-url('../img/price-20.png');
+	background-image: url('../img/price-20.png');
 	width: 86px;
 	height: 46px;
-	
-	color: #ffffff;
-	font-size: 18px;
-	padding: 5px;
-	background-color: #000000;
-	border-bottom: 2px solid #81ed81;
 }
 
 /* Footer */

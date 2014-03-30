@@ -27,7 +27,6 @@ jQuery(document).ready(function($) {
 		var templateBg = document.createElement('div');
 		var priceTag = document.createElement('div');
 		priceTag.className = "buy-now";
-		priceTag.innerHTML = 'buy now $20';
 		
 		templateBg.className = "item-panel item-panel-clickable " + templateData.background;
 		template.id = 'template-' + templateData.id;
@@ -78,13 +77,21 @@ jQuery(document).ready(function($) {
 		for (var i = 0; i < fields.length; i++)
 		{
 			var field = fields[i];
-			fieldName = properties[field].name;
+			console.log(field);
+			if (properties[field] instanceof(Object))
+			{
+				fieldName = properties[field].name;
+			} // if
+			else 
+			{
+				fieldName = properties[field];
+			}  // else
 			nameLen = fieldName.length;
 			$('.' + field).text(fieldName);
 			
 			console.log(nameLen);
 			// Change size to appropriate
-			$('.' + field).css('font-size', (140 / nameLen) * 1.5);
+			$('.' + field).css('font-size', (140 / nameLen) * 1.3);
 		}
 		
 		addClickableListeners();
