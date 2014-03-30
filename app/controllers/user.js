@@ -125,28 +125,29 @@ exports.show = function (req, res) {
 
 exports.store = function (req, res) {
   var user = req.profile
-  var options = {criteria: {'user': req.profile.id}}
-  Property.list(options, function (err, properties) {
-    if (err) return res.send('oops')
-    var designs = render_designs(user, parse_properties(properties))
-    res.render('user/store', {
+  var properties = req.properties
+  var designs = render_designs(user, parse_properties(properties))
+  res.render('user/store', {
       designs: designs,
       name:user.name,
       fields: property_fields(properties)
       //college: parse_properties(properties).College.name,
     }) 
-  }) 
 }
 
-exports.properties = function(req, res) {
+exports.properties = function(req, res, next) {
+	if (req.properties) next()
 	var user = req.profile
-	
+	Property.list({criteria: {'user': req.profile.id}}, function (err, properties) {
+		if (err) return res.send('oops')
+		req.properties = properties
+		next()
+	})	
 }
 
 exports.show = function (req, res)
 {
   var user = req.profile
-  properties = 
   res.render('user/show', {
     name: user.name,
     user: user,

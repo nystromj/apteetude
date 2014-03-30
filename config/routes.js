@@ -30,7 +30,7 @@ module.exports = function (app, passport) {
   app.get('/logout', user.logout)
   app.get('/user/:userId', user.show)
   app.get('/design', design.loads)
-  app.get('/user/:userId/store', user.store)
+  app.get('/user/:userId/store', user.properties, user.store)
   app.post('/user', user.create)
   app.post('/user/session',
     passport.authenticate('local', {
