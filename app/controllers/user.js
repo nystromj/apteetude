@@ -7,7 +7,7 @@ var mongoose = require('mongoose')
   , User = mongoose.model('User')
   , Property = mongoose.model('Property')
   , utils = require('../../lib/utils')
-  , designs = require('./design')
+  , designs = require('./design').designs
 
 var login = function (req, res) {
   var redirectTo = req.session.returnTo ? req.session.returnTo : '/'
@@ -21,6 +21,12 @@ var parse_properties = function(properties) {
     result[x.info] = x
   })
   return result
+}
+
+var property_fields = function(properties) {
+	return properties.map(function(x) {
+		return x.info
+	})
 }
 
 var render_designs = function (user, properties) {
@@ -125,9 +131,16 @@ exports.store = function (req, res) {
     var designs = render_designs(user, parse_properties(properties))
     res.render('user/store', {
       designs: designs,
-      name:user.name
+      name:user.name,
+      fields: property_fields(properties)
+      //college: parse_properties(properties).College.name,
     }) 
   }) 
+}
+
+exports.properties = function(req, res) {
+	var user = req.profile
+	
 }
 
 exports.show = function (req, res)

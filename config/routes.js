@@ -10,6 +10,7 @@ var async = require('async')
 
 var user = require('../app/controllers/user')
   , main = require('../app/controllers/main')
+  , design = require('../app/controllers/design')
   , auth = require('./middlewares/authorization')
   , example = require('../app/controllers/example')
 
@@ -28,6 +29,7 @@ module.exports = function (app, passport) {
   app.get('/signup', user.signup)
   app.get('/logout', user.logout)
   app.get('/user/:userId', user.show)
+  app.get('/design', design.loads)
   app.get('/user/:userId/store', user.store)
   app.post('/user', user.create)
   app.post('/user/session',
