@@ -116,12 +116,12 @@ exports.store = function (req, res) {
   var user = req.profile
   var properties = req.properties; 
   properties = parse_properties(properties)
-  console.log(properties)
+  console.log(req.designs)
   res.render('user/store', {
       designs: req.designs,
       name:user.name,
       properties: req.properties,
-      //fields: property_fields(properties)
+      fields: property_fields(properties)
       //college: parse_properties(properties).College.name,
     }) 
 }
