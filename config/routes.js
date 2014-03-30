@@ -28,7 +28,7 @@ module.exports = function (app, passport) {
   app.get('/login', user.login)
   app.get('/signup', user.signup)
   app.get('/logout', user.logout)
-  app.get('/user/:userId', user.properties, user.store)
+  app.get('/user/:userId', user.properties, design.getdesigns, user.store)
   app.get('/design', design.loads)
   app.get('/user/:userId/profile', user.properties, user.show)
   app.post('/user', user.create)
