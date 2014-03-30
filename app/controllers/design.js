@@ -1,3 +1,7 @@
+
+var mongoose = require('mongoose')
+  , Design = mongoose.model('Design')
+
 var des = {
 	"first": {
 		access: "user.facebook.first_name",
@@ -98,6 +102,22 @@ exports.designs = {
 // get properties
 // get designs
 // display
+
+var property_fields = function(properties) {
+	return properties.map(function(x) {
+		return x.info
+	})
+}
+
+exports.getdesigns = function(req, res, next) {
+	var properties = req.properties
+	var fields = properties.map(function(x) {return {'fields': [x.info]}})
+	Design.find({$or: fields }, function (err, designs) {
+		if (err) return res.send('oops')
+		req.designs = designs
+		next()
+	})
+}
 
 exports.loads = function(req, res) {
 	var fields = req.query.fields.split(',');

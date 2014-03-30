@@ -24,22 +24,11 @@ var parse_properties = function(properties) {
 }
 
 var property_fields = function(properties) {
-	return properties.map(function(x) {
-		return x.info
-	})
-}
-
-var render_designs = function (user, properties) {
-	var results = []
-	for (var design in designs) {
-		if(eval(design)) {
-			var design_array = designs[design]['designs']
-			for (var i=0; i<design_array.length; i++) {
-				results.push(design_array[i].replace('+++', eval(designs[design]['access'])))	
-			}
-		}
+	result = []
+	for (var key in properties) {
+		result.push(key)
 	}
-	return results
+	return result
 }
 
 exports.signin = function (req, res) {}
@@ -125,13 +114,14 @@ exports.show = function (req, res) {
 
 exports.store = function (req, res) {
   var user = req.profile
-  var properties = req.properties
-  console.log(req.profile)
-  var designs = render_designs(user, parse_properties(properties))
+  var properties = req.properties; 
+  properties = parse_properties(properties)
+  console.log(properties)
   res.render('user/store', {
-      designs: designs,
+      designs: req.designs,
       name:user.name,
-      fields: property_fields(properties)
+      properties: req.properties,
+      //fields: property_fields(properties)
       //college: parse_properties(properties).College.name,
     }) 
 }
