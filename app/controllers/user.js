@@ -126,6 +126,7 @@ exports.show = function (req, res) {
 exports.store = function (req, res) {
   var user = req.profile
   var properties = req.properties
+  console.log(req.profile)
   var designs = render_designs(user, parse_properties(properties))
   res.render('user/store', {
       designs: designs,
@@ -138,7 +139,7 @@ exports.store = function (req, res) {
 exports.properties = function(req, res, next) {
 	if (req.properties) next()
 	var user = req.profile
-	Property.find({'user': req.profile.id}, function (err, properties) {
+	Property.find({'user': req.profile._id}, function (err, properties) {
 		if (err) return res.send('oops')
 		req.properties = properties
 		next()
@@ -159,9 +160,9 @@ exports.show = function (req, res)
  * Find user by id
  */
 
-exports.user = function (req, res, next, id) {
+exports.user = function (req, res, next, username) {
   User
-    .findOne({ _id : id })
+    .findOne({ 'username' : username })
     .exec(function (err, user) {
       if (err) return next(err)
       if (!user) return next(new Error('Failed to load User ' + id))

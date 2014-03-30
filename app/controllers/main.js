@@ -10,7 +10,7 @@ exports.index = function(req, res)
   // If true, then redirect to the user's store page.
   if (req.user)
   {
-    res.redirect("/user/" + req.user.id + "/store");
+    res.redirect("/user/" + req.user.username);
   }
   else
   {

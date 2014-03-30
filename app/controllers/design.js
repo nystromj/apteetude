@@ -113,7 +113,5 @@ exports.loads = function(req, res) {
 			})
 		}
 	}
-	res.render('design', {
-		designs: designsToGo
-	})
+	res.jsonp(designsToGo)
 }
