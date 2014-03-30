@@ -231,8 +231,12 @@ a.signin-facebook:active
 .buy-now
 {
 	position: absolute;
-	bottom: 50px;
+	top: 50px;
 	right: 0;
+	
+	background-url('../img/price-20.png');
+	width: 86px;
+	height: 46px;
 	
 	color: #ffffff;
 	font-size: 18px;

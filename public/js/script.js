@@ -36,7 +36,7 @@ jQuery(document).ready(function($) {
 		
 		// Replace the template text with the default for user:
 		console.log("fields: " + templateData.fields + " and default: " +  templateData.defaults);
-    $('.' + templateData.fields).html(templateData.defaults);
+		$('.' + templateData.fields).html(templateData.defaults);
 		
 		
 		$(templateBg).append(template);
@@ -48,7 +48,7 @@ jQuery(document).ready(function($) {
 	var count = 0;
 	var wrappedTemplate;
 	
-	if (templates != undefined)
+	if (designs != undefined)
 	{
 		$.each(templates, function (index, templateData)
 		{
