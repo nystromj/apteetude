@@ -7,6 +7,7 @@ var mongoose = require('mongoose')
   , User = mongoose.model('User')
   , Property = mongoose.model('Property')
   , utils = require('../../lib/utils')
+  , designs = require('./design').designs
 
 var login = function (req, res) {
   var redirectTo = req.session.returnTo ? req.session.returnTo : '/'
@@ -22,17 +23,22 @@ var parse_properties = function(properties) {
   return result
 }
 
+var property_fields = function(properties) {
+	return properties.map(function(x) {
+		return x.info
+	})
+}
+
 var render_designs = function (user, properties) {
 	var results = []
-	if (user.facebook.first_name)
-		results.push("Hello my name is " + user.facebook.first_name);
-	if (properties.College)
-		results.push("Dreaming of " + properties.College.details.short_name);
-	if (properties.concentration)
-		results.push(properties.concentration + " Nerd");
-		results.push("Ask me about " + properties.concentration);
-	if (properties.work)
-		results.push("I <3 " + properties.work.name);
+	for (var design in designs) {
+		if(eval(design)) {
+			var design_array = designs[design]['designs']
+			for (var i=0; i<design_array.length; i++) {
+				results.push(design_array[i].replace('+++', eval(designs[design]['access'])))	
+			}
+		}
+	}
 	return results
 }
 
@@ -125,9 +131,16 @@ exports.store = function (req, res) {
     var designs = render_designs(user, parse_properties(properties))
     res.render('user/store', {
       designs: designs,
-      name:user.name
+      name:user.name,
+      fields: property_fields(properties)
+      //college: parse_properties(properties).College.name,
     }) 
   }) 
+}
+
+exports.properties = function(req, res) {
+	var user = req.profile
+	
 }
 
 exports.show = function (req, res)
