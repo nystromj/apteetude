@@ -18,7 +18,8 @@ var login = function (req, res) {
 var parse_properties = function(properties) {
   result = {}
   properties.forEach(function(x) {
-    result[x.info] = x
+  	if (x.info == 'city') result[x.details.relationship]=x
+    else result[x.info] = x
   })
   return result
 }
@@ -107,8 +108,8 @@ exports.show = function (req, res) {
 exports.store = function (req, res) {
   var user = req.profile
   var properties = req.properties;
+  console.log(properties)
   var designs = req.designs
-  console.log(designs)
   res.render('user/store', {
       designs: designs,
       name:user.name,

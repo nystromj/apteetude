@@ -1,7 +1,7 @@
 
 var mongoose = require('mongoose')
   , Design = mongoose.model('Design')
-
+/**
 var des = {
 	"first": {
 		access: "user.facebook.first_name",
@@ -47,11 +47,8 @@ var des = {
 			"Have you met a +++ before?"
 		]
 	}
-}
-// load user
-// get properties
-// get designs
-// display
+}**/
+
 exports.getdesigns = function(req, res, next) {
 	var fields = req.query.fields ? req.query.fields.split(',') : Object.keys(req.properties)
 	var criteria = fields.map(function(x){ return {'fields': [x]}})
