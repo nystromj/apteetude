@@ -103,35 +103,18 @@ exports.designs = {
 // get designs
 // display
 
-var property_fields = function(properties) {
-	return properties.map(function(x) {
-		return x.info
+var get_criteria = function(ls) {
+	return ls.map(function(x) {
+		return {'fields': [x.info]}
 	})
 }
 
 exports.getdesigns = function(req, res, next) {
-	var properties = req.properties
-	var fields = properties.map(function(x) {return {'fields': [x.info]}})
-	Design.find({$or: fields }, function (err, designs) {
+	var fields = req.query.fields ? req.query.fields.split(',') : req.properties.map(function (x) {return x.info})
+	var criteria = fields.map(function(x){ return {'fields': [x]}})
+	Design.find({$or: criteria }, {_id: 0}, function (err, designs) {
 		if (err) return res.send('oops')
 		req.designs = designs
 		next()
 	})
-}
-
-exports.loads = function(req, res) {
-	var fields = req.query.fields.split(',');
-	console.log(fields)
-	
-	var designsToGo = []
-	for (var i = 0; i < fields.length; i++)
-	{
-		if (des[fields[i]]) // if in fields array
-		{
-			des[fields[i]]['html'].forEach(function (x) {
-				designsToGo.push(x)
-			})
-		}
-	}
-	res.jsonp(designsToGo)
 }
