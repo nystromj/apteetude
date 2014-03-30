@@ -8,47 +8,10 @@
 
 jQuery(document).ready(function($) {
 	
-	// template is a html object, not jquery
-	function wrapTemplate(template)
-	{
-    	var templateWrapper = document.createElement('div');
-    	templateWrapper.className = "item-panel-wrapper";
-		$(templateWrapper).append(template);
-    	return templateWrapper;
-    	
-		
-	} // wrapTemplate ()
 	
-	function createTemplate(templateData)
-	{
-		/* Create a template */
-		var template = document.createElement('div');
-		var templateBg = document.createElement('div');
-		var priceTag = document.createElement('div');
-		priceTag.className = "buy-now";
-		priceTag.innerHTML = 'buy now $20';
-		
-		templateBg.className = "item-panel item-panel-clickable " + templateData.background;
-		template.id = 'template-' + templateData.id;
-		$(template).attr('data-fields', templateData.fields);
-		template.className = 'template';
-		template.innerHTML = templateData.html;
-		
-		// Replace the template text with the default for user:
-		console.log("fields: " + templateData.fields + " and default: " +  templateData.defaults);
-    $('.' + templateData.fields).html(templateData.defaults);
-		
-		
-		$(templateBg).append(template);
-		$(templateBg).append(priceTag);
-		return templateBg;
-	} // createTemplate ()
-	
-	
-	var count = 0;
-	var wrappedTemplate;
-	
-	if (templates != undefined)
+				
+	/*
+if (templates != undefined)
 	{
 		$.each(templates, function (index, templateData)
 		{
@@ -75,6 +38,7 @@ jQuery(document).ready(function($) {
 			
 		});
 	}
+*/
 	
 	
 	
