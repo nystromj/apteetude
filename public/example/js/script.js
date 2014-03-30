@@ -97,6 +97,7 @@ jQuery(document).ready(function($) {
 	}, 'Store front', '?view=store');
 	$('.item-panel-clickable').click(function() {
 		// Hide all other item panels
+		$(this).css('backgroundColor', $(this).attr('data-color-origin'));
 		showEditing(this);
 	});
 	// On browser changing states:
@@ -344,7 +345,7 @@ jQuery(document).ready(function($) {
 	.mouseout(function ()
 	{
 	  // Set back to original color
-    $(this).css('backgroundColor', $(this).attr('data-color-origin'));
+	  $(this).css('backgroundColor', $(this).attr('data-color-origin'));
   	
 	}); // mouseout
 	
