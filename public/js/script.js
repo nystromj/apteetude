@@ -7,8 +7,9 @@
 */
 
 jQuery(document).ready(function($) {
-	
-	// template is a html object, not jquery
+    
+
+    // template is a html object, not jquery
 	function wrapTemplate(template)
 	{
     	var templateWrapper = document.createElement('div');
@@ -35,8 +36,8 @@ jQuery(document).ready(function($) {
 		template.innerHTML = templateData.html;
 		
 		// Replace the template text with the default for user:
-		console.log("fields: " + templateData.fields + " and default: " +  templateData.defaults);
-		$('.' + templateData.fields).html(templateData.defaults);
+
+    $('.' + templateData.fields).html(templateData.defaults);
 		
 		
 		$(templateBg).append(template);
@@ -45,14 +46,12 @@ jQuery(document).ready(function($) {
 	} // createTemplate ()
 	
 	
-	var count = 0;
-	var wrappedTemplate;
-	
-/*
-	if (designs != undefined)
-	{
+	designsInit = function () {
+		var count = 0;
+		var wrappedTemplate;
 		$.each(templates, function (index, templateData)
 		{
+	
 			wrappedTemplate = wrapTemplate(createTemplate(templateData));
 			if (count < 2)
 			{
@@ -73,32 +72,36 @@ jQuery(document).ready(function($) {
 			{
 				count = 0;
 			}
-			
 		});
-	}
-*/
-	
-	
-	
-	var draggie = new Draggabilly( document.getElementById('editing-pane'), {
-		handle: '.panel-heading'
-	});
-	var draggie2 = new Draggabilly( document.getElementById('checkout-pane'), {
-		handle: '.panel-heading'
-	});
-	
-	var fields, designID, state;
+		
+		var fieldname, nameLen;
+		for (var i = 0; i < fields.length; i++)
+		{
+			var field = fields[i];
+			fieldName = properties[field].name;
+			nameLen = fieldName.length;
+			$('.' + field).text(fieldName);
+			
+			console.log(nameLen);
+			// Change size to appropriate
+			$('.' + field).css('font-size', (140 / nameLen) * 1.5);
+		}
+		
+		addClickableListeners();
+	} // designInit
+		
+	var dataFields, designID, state;
 	// Replace the current state.
-	history.replaceState({
+	/*
+history.replaceState({
 		view: 'store'
 	}, 'Store front', '?view=store');
-	$('.item-panel-clickable').click(function() {
-		// Hide all other item panels
-		$(this).css('backgroundColor', $(this).attr('data-color-origin'));
-		showEditing(this);
-	});
+*/	
+
+	
 	// On browser changing states:
-	window.addEventListener("popstate", function(e) {
+	/*
+window.addEventListener("popstate", function(e) {
 		state = e.state;
 		if (state.view && state.view == 'store') {
 			$('#editing-screen').hide();
@@ -107,6 +110,24 @@ jQuery(document).ready(function($) {
 			$('.item-panel').addClass('item-panel-clickable');
 		}
 	});
+*/
+	function addClickableListeners()
+	{
+		
+		$('.item-panel-clickable').click(function() {
+			// Hide all other item panels
+
+			$(this).css('backgroundColor', $(this).attr('data-color-origin'));
+			showEditing(this);
+		});
+		var draggie = new Draggabilly( document.getElementById('editing-pane'), {
+			handle: '.panel-heading'
+		});
+		var draggie2 = new Draggabilly( document.getElementById('checkout-pane'), {
+			handle: '.panel-heading'
+		});
+
+	}
 	
 	function showEditing(el)
 	{
@@ -125,15 +146,15 @@ jQuery(document).ready(function($) {
 		/* Create the editing area */
 		var template = $(el).find('.template');
 		var templateId = $(template).attr('id');
-		fields = template.attr('data-fields');
-		if (fields != 'undefined')
+		dataFields = template.attr('data-fields');
+		if (dataFields != 'undefined')
 		{
-			fields = fields.split(',');
+			dataFields = dataFields.split(',');
 			var elementsWrap, newEl, elWrap, label, defText;
 			// Remove all previous elements that have been added
 			
 			
-			$.each(fields, function (index, field)
+			$.each(dataFields, function (index, field)
 			{
     			
     			elementsWrap = document.createElement('div');
@@ -177,7 +198,7 @@ jQuery(document).ready(function($) {
 			view: 'design',
 			designID: designID
 		};
-		history.pushState(state, 'Edit Design', '/store/item/' + designID + '?text=' + defText);
+		//history.pushState(state, 'Edit Design', '/store/item/' + designID + '?text=' + defText);
 	} // showEditing(element)
 	
 	function appendUsualSuspects(field, elWrap, templateId)
@@ -392,6 +413,5 @@ function HsvToRgb(h, s, v) {
     blue = Math.round(blue * 255);
     return {r:red,g:green,b:blue};
 }
-	
 	
 }); // jquery

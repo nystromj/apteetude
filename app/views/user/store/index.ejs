@@ -1,88 +1,14 @@
 <% include header %>
-
-    		<script>jQuery(document).ready(function ($) { 
-    			var tempates = <%- designs %>;
-    			
-    			makeDesigns();
-    			// template is a html object, not jquery
-	function wrapTemplate(template)
-	{
-    	var templateWrapper = document.createElement('div');
-    	templateWrapper.className = "item-panel-wrapper";
-		$(templateWrapper).append(template);
-    	return templateWrapper;
-    	
-		
-	} // wrapTemplate ()
+    <script>
+    var fields, field, properties, templates, designsInit;
+   jQuery(document).ready(function ($){
+    	fields = "<%- fields %>".split(',');
+		properties = <%- properties %>;
+		templates = [<%- designs %>];
+		designsInit();
+	});
+	</script>				
 	
-	function createTemplate(templateData)
-	{
-		/* Create a template */
-		var template = document.createElement('div');
-		var templateBg = document.createElement('div');
-		var priceTag = document.createElement('div');
-		priceTag.className = "buy-now";
-		priceTag.innerHTML = 'buy now $20';
-		
-		templateBg.className = "item-panel item-panel-clickable " + templateData.background;
-		template.id = 'template-' + templateData.id;
-		$(template).attr('data-fields', templateData.fields);
-		template.className = 'template';
-		template.innerHTML = templateData.html;
-		
-		// Replace the template text with the default for user:
-		console.log("fields: " + templateData.fields + " and default: " +  templateData.defaults);
-    $('.' + templateData.fields).html(templateData.defaults);
-		
-		
-		$(templateBg).append(template);
-		$(templateBg).append(priceTag);
-		return templateBg;
-	} // createTemplate ()
-	
-	
-	var count = 0;
-	var wrappedTemplate;
-	
-	function makeDesigns() {        		
-        		$.ajax({
-	        		url: '/design',
-	        		type: "GET",
-	        		data: {
-		        		fields: fields,
-	        		}
-        		}).done(function (response)
-        		{
-        			
-	        		console.log(response);
-	        		$.each(response, function (index, templateData)
-					{
-						console.log(templateData);
-						wrappedTemplate = wrapTemplate(createTemplate(templateData));
-						if (count < 2)
-						{
-							$('#col-first').append(wrappedTemplate);
-							count++;
-						}
-						else if (count < 4)
-						{
-							$('#col-second').append(wrappedTemplate);
-							count++;
-						}
-						else if (count < 6)
-						{
-							$('#col-third').append(wrappedTemplate);
-							count++;
-						}
-						else
-						{
-							count = 0;
-						}
-					});
-				});
-			}
-    		})</script>
-
     <div class="main">
         <div id="col-first" class="store-primary-col col-md-4">
             <div class="home-brand"></div>
