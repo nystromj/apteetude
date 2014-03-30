@@ -120,7 +120,7 @@ exports.store = function (req, res) {
   res.render('user/store', {
       designs: req.designs,
       name:user.name,
-      properties: req.properties,
+      properties: properties,
       fields: property_fields(properties)
       //college: parse_properties(properties).College.name,
     }) 
