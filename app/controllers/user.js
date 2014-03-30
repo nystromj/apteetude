@@ -23,14 +23,6 @@ var parse_properties = function(properties) {
   return result
 }
 
-var property_fields = function(properties) {
-	result = []
-	for (var key in properties) {
-		result.push(key)
-	}
-	return result
-}
-
 exports.signin = function (req, res) {}
 
 /**
@@ -114,14 +106,14 @@ exports.show = function (req, res) {
 
 exports.store = function (req, res) {
   var user = req.profile
-  var properties = req.properties; 
-  properties = parse_properties(properties)
-  console.log(req.designs)
+  var properties = req.properties;
+  var designs = req.designs
+  console.log(designs)
   res.render('user/store', {
-      designs: req.designs,
+      designs: designs,
       name:user.name,
       properties: properties,
-      fields: property_fields(properties)
+      fields: Object.keys(properties)
       //college: parse_properties(properties).College.name,
     }) 
 }
@@ -131,7 +123,10 @@ exports.properties = function(req, res, next) {
 	var user = req.profile
 	Property.find({'user': req.profile._id}, function (err, properties) {
 		if (err) return res.send('oops')
-		req.properties = properties
+		result = parse_properties(properties)
+		result['first_name'] = user.facebook.first_name
+		result['last_name'] = user.facebook.last_name
+		req.properties = result
 		next()
 	})	
 }
