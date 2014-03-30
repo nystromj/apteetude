@@ -8,6 +8,10 @@
 
 jQuery(document).ready(function($) {
 	
+	if (paul)
+	{
+		initDesigns();
+	}
 	// template is a html object, not jquery
 	function wrapTemplate(template)
 	{
@@ -48,8 +52,9 @@ jQuery(document).ready(function($) {
 	var count = 0;
 	var wrappedTemplate;
 	
-	if (templates != undefined)
+	function initDesigns() 
 	{
+	
 		$.each(templates, function (index, templateData)
 		{
 			wrappedTemplate = wrapTemplate(createTemplate(templateData));
@@ -340,7 +345,7 @@ jQuery(document).ready(function($) {
 	.mouseout(function ()
 	{
 	  // Set back to original color
-    $(this).css('backgroundColor', $(this).attr('data-color-origin'));
+	  $(this).css('backgroundColor', $(this).attr('data-color-origin'));
   	
 	}); // mouseout
 	

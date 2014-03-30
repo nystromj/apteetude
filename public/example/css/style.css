@@ -12,57 +12,6 @@ body
 {
 	background-color: #000000;
 }
-/*
-	Bottom Menu
-*/
-#store-footer .container-fluid
-{
-	padding-left: 0;
-}
-#store-footer .navbar
-{
-	background-color: transparent;
-}
-#store-footer
-{
-	margin-bottom: -1px;
-}
-.bottom-menu-item
-{
-	color: #000000;
-	text-transform: uppercase;
-	font-style: italic;
-	font-weight: 700;
-}
-/* bottom menu colors */
-.bottom-menu-black
-{
-	background-color: #000000;
-	color: #fff;
-	
-	/* Show me more! */
-	font-style: normal;
-}
-.bottom-menu-red
-{
-	background-color: #ffdd66;
-}
-.bottom-menu-blue
-{
-	background-color: #1ccafd;
-}
-.bottom-menu-yellow
-{
-	background-color: #ffdd66;
-}
-.bottom-menu-green
-{
-	background-color: #5ad294;
-}
-.bottom-menu-purple
-{
-	background-color: #f383f2;
-}
 
 
 /*
@@ -93,7 +42,7 @@ body
 .home-brand
 {
 	height: 80px;
-	background-image: url('../img/logo-scale.png');
+	background-image: url('../../img/logo-scale.png');
 	background-repeat: no-repeat;
 	background-position:center; 
 }
@@ -165,30 +114,30 @@ body
 
 .item-white /* Show a white t-shirt */
 {
-	background-image: url('../img/t-white.png');
+	background-image: url('../../img/t-white.png');
 	
 }
 .item-black
 {
-	background-image: url('../img/t-black.png');
+	background-image: url('../../img/t-black.png');
 }
 .item-blue
 {
-	background-image: url('../img/t-blue.png');
+	background-image: url('../../img/t-blue.png');
 
 }
 
 .tshirt-female-blue
 {
-	background-image: url('../img/girlsteeblue.png');
+	background-image: url('../../img/girlsteeblue.png');
 }
 .tshirt-female-black
 {
-	background-image: url('../img/girlsteeblack.png');
+	background-image: url('../../img/girlsteeblack.png');
 }
 .tshirt-female-white
 {
-	background-image: url('../img/girlsteewhite.png');
+	background-image: url('../../img/girlsteewhite.png');
 }
 
 /* Facebook Sign in button */
@@ -207,7 +156,7 @@ body
 	text-decoration: none;
 	
 	/* Facebook Log Image in Background */
-	background-image: url('../img/signinFacebook.svg');
+	background-image: url('../../img/signinFacebook.svg');
 	background-repeat: no-repeat;
 	background-position-x: 5px;
 	background-position-y: 5px;

@@ -1,23 +1,146 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<% include header %>
 
-<html>
-<head>
-    <title></title>
-    <link href="/css/style.css" rel="stylesheet" type="text/css">
-</head>
-
-<body>
-    This is the storefront
+    		<script>jQuery(document).ready(function ($) { 
+    			var fields = "<%= fields %>"; //console.log(fields); 
+    			makeDesigns();
+    			// template is a html object, not jquery
+	function wrapTemplate(template)
+	{
+    	var templateWrapper = document.createElement('div');
+    	templateWrapper.className = "item-panel-wrapper";
+		$(templateWrapper).append(template);
+    	return templateWrapper;
     	
+		
+	} // wrapTemplate ()
+	
+	function createTemplate(templateData)
+	{
+		/* Create a template */
+		var template = document.createElement('div');
+		var templateBg = document.createElement('div');
+		var priceTag = document.createElement('div');
+		priceTag.className = "buy-now";
+		priceTag.innerHTML = 'buy now $20';
+		
+		templateBg.className = "item-panel item-panel-clickable " + templateData.background;
+		template.id = 'template-' + templateData.id;
+		$(template).attr('data-fields', templateData.fields);
+		template.className = 'template';
+		template.innerHTML = templateData.html;
+		
+		// Replace the template text with the default for user:
+		console.log("fields: " + templateData.fields + " and default: " +  templateData.defaults);
+    $('.' + templateData.fields).html(templateData.defaults);
+		
+		
+		$(templateBg).append(template);
+		$(templateBg).append(priceTag);
+		return templateBg;
+	} // createTemplate ()
+	
+	
+	var count = 0;
+	var wrappedTemplate;
+	
+	function makeDesigns() {        		
+        		$.ajax({
+	        		url: '/design',
+	        		type: "GET",
+	        		data: {
+		        		fields: fields,
+	        		}
+        		}).done(function (response)
+        		{
+        			
+	        		console.log(response);
+	        		$.each(response, function (index, templateData)
+					{
+						console.log(templateData);
+						wrappedTemplate = wrapTemplate(createTemplate(templateData));
+						if (count < 2)
+						{
+							$('#col-first').append(wrappedTemplate);
+							count++;
+						}
+						else if (count < 4)
+						{
+							$('#col-second').append(wrappedTemplate);
+							count++;
+						}
+						else if (count < 6)
+						{
+							$('#col-third').append(wrappedTemplate);
+							count++;
+						}
+						else
+						{
+							count = 0;
+						}
+					});
+				});
+			}
+    		})</script>
+
+    <div class="main">
+        <div id="col-first" class="store-primary-col col-md-4">
+            <div class="home-brand"></div>
+
+            <div class="home-brand-secondary">
+                "T-shirts made just for you"
+            </div>
+            
+            <!-- Now, item panels go here! -->            
+        </div>
+
+        <div id="col-second" class="store-primary-col col-md-4">
+			<!-- Second column! -->            
+        </div>
+
+        <div id="col-third" class="store-primary-col col-md-4">
+	       <!-- Third column! -->            
+        </div>
+
+        <div class="clearfix"></div>
         
-<ul>
-      <% for(var i=0; i<designs.length; i++) {%>
-          <li><%= designs[i] %></li>
-          <% } %>
+        <div id="editing-screen" style="display:none;">
+        	<h2 class="edit-design-header">Edit Design</h2>
+        	<div class="editing-container">
+		        <div id="edit-template"></div>
+		        
+		        <div id="editing-pane" class="panel panel-default">
+	        		<div id="editing-pane-heading" class="panel-heading">Editing panel</div>
+	        		<div class="panel-body">
+	        			<p>Edit your design here, using the controls below.</p>
+	        			<div id="editing-options"></div>
+	        		</div>
+	        	</div>
+	        	
+	        	<div id="checkout-pane" class="panel panel-info">
+	        		<div id="editing-pane-heading" class="panel-heading">Checkout</div>
+	        		<div class="panel-body">
+	        			<div class="checkout-price">
+	        				Price: <strong>$20</strong>
+	        			</div>
+	        			<div class="checkout-availability">
+	        				Availability: <strong>In stock</strong>
+	        			</div>
+	        			<div style="margin-top:10px;">
+	        				<a href="#" class="btn btn-info">Order Now</a>
+	        			</div>
+	        		</div>
+				</div>
+        	</div>
+        </div>
+    </div><!-- main -->
+    
+    <%= include footer_menu %>
+    <%= include footer %>
+
 
 
     <div class="" style="width:500px; margin: 0 auto;">
-        <a href="/logout" class="signin-facebook" title="authenticate with Facebook">Log out</a>
+        
     </div>
 </body>
 </html>
