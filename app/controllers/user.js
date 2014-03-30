@@ -24,11 +24,15 @@ var parse_properties = function(properties) {
 
 var render_designs = function (user, properties) {
 	var results = []
-	results.push("Hello my name is " + user.facebook.first_name);
-  results.push("Dreaming of " + properties.College.meta.short_name);
-  results.push(properties.concentration.name + " Nerd");
-  results.push("I <3 " + properties.work.name);
-  results.push("Ask me about " + properties.concentration.name);
+	if (user.facebook.first_name)
+		results.push("Hello my name is " + user.facebook.first_name);
+	if (properties.College)
+		results.push("Dreaming of " + properties.College.meta.short_name);
+	if (properties.concentration)
+		results.push(properties.concentration.name + " Nerd");
+		results.push("Ask me about " + properties.concentration.name);
+	if (properties.work)
+		results.push("I <3 " + properties.work.name);
 	return results
 }
 
