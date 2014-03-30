@@ -138,7 +138,7 @@ exports.store = function (req, res) {
 exports.properties = function(req, res, next) {
 	if (req.properties) next()
 	var user = req.profile
-	Property.list({criteria: {'user': req.profile.id}}, function (err, properties) {
+	Property.find({'user': req.profile.id}, function (err, properties) {
 		if (err) return res.send('oops')
 		req.properties = properties
 		next()

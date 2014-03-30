@@ -37,7 +37,6 @@ module.exports = function (app, passport) {
       failureRedirect: '/login',
       failureFlash: 'Invalid email or password.'
     }), user.session)
-  //app.get('/user/:userId', user.store)
   app.get('/auth/facebook',
     passport.authenticate('facebook', {
       scope: [ 'email', 'user_about_me'],
