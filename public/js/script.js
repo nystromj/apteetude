@@ -48,6 +48,7 @@ jQuery(document).ready(function($) {
 	var count = 0;
 	var wrappedTemplate;
 	
+/*
 	if (designs != undefined)
 	{
 		$.each(templates, function (index, templateData)
@@ -75,6 +76,7 @@ jQuery(document).ready(function($) {
 			
 		});
 	}
+*/
 	
 	
 	

@@ -1,7 +1,8 @@
 <% include header %>
 
     		<script>jQuery(document).ready(function ($) { 
-    			var fields = "<%= fields %>"; //console.log(fields); 
+    			var tempates = <%- designs %>;
+    			
     			makeDesigns();
     			// template is a html object, not jquery
 	function wrapTemplate(template)
