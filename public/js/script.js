@@ -22,13 +22,15 @@ jQuery(document).ready(function($) {
 	
 	function createTemplate(templateData)
 	{
+		
 		/* Create a template */
 		var template = document.createElement('div');
 		var templateBg = document.createElement('div');
 		var priceTag = document.createElement('div');
 		priceTag.className = "buy-now";
+		var bgOptions = ['panel-red', 'panel-blue', 'panel-green', 'panel-purple', 'panel-yellow' ]
 		
-		templateBg.className = "item-panel item-panel-clickable " + templateData.background;
+		templateBg.className = bgOptions[Math.floor(Math.random() * bgOptions.length)] + " item-panel item-panel-clickable " + templateData.background;
 		template.id = 'template-' + templateData.id;
 		$(template).attr('data-fields', templateData.fields);
 		template.className = 'template';
@@ -46,30 +48,26 @@ jQuery(document).ready(function($) {
 	
 	
 	designsInit = function () {
-		var count = 0;
+		var count = 1;
 		var wrappedTemplate;
 		$.each(templates, function (index, templateData)
 		{
 	
 			wrappedTemplate = wrapTemplate(createTemplate(templateData));
-			if (count < 2)
+			if (count == 1)
 			{
 				$('#col-first').append(wrappedTemplate);
 				count++;
 			}
-			else if (count < 4)
+			else if (count == 2)
 			{
 				$('#col-second').append(wrappedTemplate);
 				count++;
 			}
-			else if (count < 6)
-			{
-				$('#col-third').append(wrappedTemplate);
-				count++;
-			}
 			else
 			{
-				count = 0;
+				$('#col-third').append(wrappedTemplate);
+				count = 1;
 			}
 		});
 		
