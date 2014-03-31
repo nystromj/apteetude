@@ -6,7 +6,13 @@ body
 }
 .main
 {
-	height: 100%;
+	background-color: #5ad294;
+	min-height: 600px;
+}
+#page-container
+{
+	margin: 0;
+	padding: 0;
 }
 .navbar
 {
@@ -15,16 +21,21 @@ body
 /*
 	Bottom Menu
 */
+
 #store-footer .container-fluid
 {
 	padding-left: 0;
 }
 #store-footer .navbar
 {
-	background-color: transparent;
+	background-color: #000;
+	border: none;
 }
 #store-footer
 {
+	width: 100%;
+	position: fixed;
+	bottom: 0;
 	margin-bottom: -1px;
 }
 .bottom-menu-item
@@ -33,7 +44,9 @@ body
 	text-transform: uppercase;
 	font-style: italic;
 	font-weight: 700;
+	padding: 0 20px;
 }
+
 /* bottom menu colors */
 .bottom-menu-black
 {
@@ -45,7 +58,7 @@ body
 }
 .bottom-menu-red
 {
-	background-color: #ffdd66;
+	background-color: #fd5151;
 }
 .bottom-menu-blue
 {
@@ -101,13 +114,13 @@ body
 .home-brand, .home-brand-secondary {
 	background-color: #000000;
 	padding: 20px;
-	margin-bottom: 1px;
+	border-bottom: 1px solid #fff;
 	text-align: center;
 	font-weight: 700;
 }
 .home-brand-secondary
 {
-	margin-top: 2px;
+	border-top: 2px solid #fff;
 	font-size: 24px;
 	color: white;
 }
@@ -232,18 +245,11 @@ a.signin-facebook:active
 {
 	position: absolute;
 	top: 10px;
-	right: 0;
+	right: 10px;
 	
 	background-image: url('../img/price-20.png');
 	width: 86px;
 	height: 46px;
-}
-
-/* Footer */
-footer#store-footer
-{
-	position: fixed;
-	bottom: 0;
 }
 
 /* Templates */
