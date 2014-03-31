@@ -31,7 +31,7 @@
         <div class="clearfix"></div>
         
         <div id="editing-screen" style="display:none;">
-        	<h2 class="edit-design-header">Edit Design</h2>
+        	<h2 class="edit-design-header"><a href="/user/<%= username %>">&lt; Return</a></h2>
         	<div class="editing-container">
 		        <div id="edit-template"></div>
 		        
@@ -44,7 +44,7 @@
 	        	</div>
 	        	
 	        	<div id="checkout-pane" class="panel panel-info">
-	        		<div id="editing-pane-heading" class="panel-heading">Checkout</div>
+	        		<div id="editing-pane-heading" class="panel-heading"><span class="glyphicon glyphicon-shopping-cart"></span> Checkout</div>
 	        		<div class="panel-body">
 	        			<div class="checkout-price">
 	        				Price: <strong>$20</strong>
@@ -63,8 +63,6 @@
     
     <%= include footer_menu %>
     <%= include footer %>
-
-
 
     <div class="" style="width:500px; margin: 0 auto;">
         

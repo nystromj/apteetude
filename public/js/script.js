@@ -22,13 +22,15 @@ jQuery(document).ready(function($) {
 	
 	function createTemplate(templateData)
 	{
+		
 		/* Create a template */
 		var template = document.createElement('div');
 		var templateBg = document.createElement('div');
 		var priceTag = document.createElement('div');
 		priceTag.className = "buy-now";
+		var bgOptions = ['panel-red', 'panel-blue', 'panel-green', 'panel-purple', 'panel-yellow' ]
 		
-		templateBg.className = "item-panel item-panel-clickable " + templateData.background;
+		templateBg.className = bgOptions[Math.floor(Math.random() * bgOptions.length)] + " item-panel item-panel-clickable " + templateData.background;
 		template.id = 'template-' + templateData.id;
 		$(template).attr('data-fields', templateData.fields);
 		template.className = 'template';
@@ -46,30 +48,26 @@ jQuery(document).ready(function($) {
 	
 	
 	designsInit = function () {
-		var count = 0;
+		var count = 1;
 		var wrappedTemplate;
 		$.each(templates, function (index, templateData)
 		{
 	
 			wrappedTemplate = wrapTemplate(createTemplate(templateData));
-			if (count < 2)
+			if (count == 1)
 			{
 				$('#col-first').append(wrappedTemplate);
 				count++;
 			}
-			else if (count < 4)
+			else if (count == 2)
 			{
 				$('#col-second').append(wrappedTemplate);
 				count++;
 			}
-			else if (count < 6)
-			{
-				$('#col-third').append(wrappedTemplate);
-				count++;
-			}
 			else
 			{
-				count = 0;
+				$('#col-third').append(wrappedTemplate);
+				count = 1;
 			}
 		});
 		
@@ -99,16 +97,13 @@ jQuery(document).ready(function($) {
 		
 	var dataFields, designID, state;
 	// Replace the current state.
-	/*
-history.replaceState({
+	history.replaceState({
 		view: 'store'
-	}, 'Store front', '?view=store');
-*/	
+	}, 'Store front', '?view=store');	
 
 	
 	// On browser changing states:
-	/*
-window.addEventListener("popstate", function(e) {
+	window.addEventListener("popstate", function(e) {
 		state = e.state;
 		if (state.view && state.view == 'store') {
 			$('#editing-screen').hide();
@@ -117,7 +112,6 @@ window.addEventListener("popstate", function(e) {
 			$('.item-panel').addClass('item-panel-clickable');
 		}
 	});
-*/
 	function addClickableListeners()
 	{
 		
@@ -175,7 +169,7 @@ window.addEventListener("popstate", function(e) {
 				newEl.type = 'text';
 				elWrap = document.createElement('div');
 				label = document.createElement('label');
-				label.innerHTML = field.charAt(0).toUpperCase() + field.slice(1);;
+				label.innerHTML = (field.charAt(0).toUpperCase() + field.slice(1)).replace('_', ' ');
 				newEl.value = defText;
 				
 				// Use jQuery from here, because they didn't teach me JS properly.
@@ -205,7 +199,7 @@ window.addEventListener("popstate", function(e) {
 			view: 'design',
 			designID: designID
 		};
-		//history.pushState(state, 'Edit Design', '/store/item/' + designID + '?text=' + defText);
+		history.pushState(state, 'Edit Design', '/store/item/' + designID + '?text=' + defText);
 	} // showEditing(element)
 	
 	function appendUsualSuspects(field, elWrap, templateId)
@@ -263,7 +257,7 @@ window.addEventListener("popstate", function(e) {
 	function addStyleCustomizeListeners()
 	{
 		$('#editing-screen').click(function(e) {
-			if (!$(e.target).is('input[type="submit"]')) 
+			if (!$(e.target).is('input[type="submit"], a') ) 
 			{
 				if (!$(e.target).is(".color-picker, .iris-picker, .iris-picker-inner")) {
 					$('.color-picker').iris('hide');
