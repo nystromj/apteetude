@@ -5,7 +5,6 @@
 
 var mongoose = require('mongoose')
   , User = mongoose.model('User')
-  , Property = mongoose.model('Property')
   , utils = require('../../lib/utils')
   , designs = require('./design').designs
 
@@ -13,15 +12,6 @@ var login = function (req, res) {
   var redirectTo = req.session.returnTo ? req.session.returnTo : '/'
   delete req.session.returnTo
   res.redirect(redirectTo)
-}
-
-var parse_properties = function(properties) {
-  result = {}
-  properties.forEach(function(x) {
-  	if (x.info == 'city') result[x.details.relationship]=x
-    else result[x.info] = x
-  })
-  return result
 }
 
 exports.signin = function (req, res) {}
@@ -106,7 +96,7 @@ exports.show = function (req, res) {
 }
 
 exports.store = function (req, res) {
-  var user = req.profile
+  var user = req.user
   var properties = req.properties;
   console.log(properties)
   var designs = req.designs
@@ -119,26 +109,11 @@ exports.store = function (req, res) {
     }) 
 }
 
-exports.properties = function(req, res, next) {
-	if (req.properties) next()
-	var user = req.profile
-	Property.find({'user': req.profile._id}, function (err, properties) {
-		if (err) return res.send('oops')
-		result = parse_properties(properties)
-		result['first_name'] = user.facebook.first_name
-		result['last_name'] = user.facebook.last_name
-		req.properties = result
-		next()
-	})	
-}
-
 exports.show = function (req, res)
 {
-  var user = req.profile
+  var profile = req.profile
   res.render('user/show', {
-    name: user.name,
-    user: user,
-    userID: user.id,
+    user: user
   })
 } // store **/
 

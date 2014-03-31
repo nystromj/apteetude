@@ -2,82 +2,88 @@ var get_field = function (field, data) {
 	return field ? field.data : null
 }
 
-exports.get_school = function (template, field, user_field) {
-	school = {
-		info: user_field.type, 
-		name: user_field.school.name,
-		meta: {
-			facebook_id: user_field.school.id,
-			short_name: user_field.school.name.replace(" College", '').replace(' University', '')
-			//location: freebase_url
-			//masot: freebase_url
-			//nickname: freebase_url,
-			//slogan: freebase_url	
-		},
-		details: {
-			year: get_field(user_field.year, 'name'),
-
-		}	
-	}
-	if (user_field.concentration) {
-		result = [school]
-		if (user_field.concentration instanceof Array) {
-			for (var i = 0; i <user_field.concentration.length; i++) {
-				concentration = user_field.concentration[i]
-				result.push({
-					info:'concentration', 
-					name: concentration.name, 
-					meta: {facebook_id: concentration.id},
-					details: {school: user_field.school.name}});	
-			}
-		}
-		else result.push({
-			info:'concentration', 
-			name: concentration.name, 
-			meta: {facebook_id: concentration.id},
-			details: {school: user_field.school.name}});
-		return result
-	}
-	else 
-		return school
-}
-
-exports.get_workplace = function (template, field, user_field) {
-	work = {
-		info: field,
-		name: user_field.employer.name,
-		meta: {facebook_id: user_field.employer.id},
-		details: {employer_location: get_field(user_field.location, 'name')}
-	}
-	if (user_field.position) {
-		result = [work]
-		result.push({
-			info: 'position',
-			name: user_field.position.name,
-			meta: {facebook_id: user_field.position.id},
-			details: {employer: user_field.employer.name}});
-		return result
-	}
-	else return work
-}
-
-exports.get_city = function (template, field, user_field) {
+var get_one = function(field, info, meta, details) {
 	return {
-		info: 'city',
-		name: user_field.name,
-		meta: {facebook_id: user_field.id},
-		details: { relationship: field }
-			//skills: freebase url for position
-			// nickname: freebase,
-			//slogan: freebase
+		info: info.toLowerCase(),
+		name: field.name,
+		facebook_page: field.id,
+		meta: meta,
+		details: details
 	}
+}
+
+var get_data = function(results, field, info, meta, details) {
+	if (field instanceof Array) {
+		for (var i = 0; i < field.length; i++)
+			results.push(get_one(field[i], info, meta, details))
+	}
+	else results.push(get_one(field, info, meta, details))
+	return results
+}
+
+var school_helper = function(results, user_data) {
+	var meta = {}
+	if (user_data.type === 'College') {
+		meta = {short_name: user_data.school.name.replace(" College", '').replace(' University', '')}
+		if (user_data.concentration) {
+			get_data(results, user_data.concentration, 'concentration', {}, { school: user_data.school.name})
+		}
+	}
+	get_data(results, user_data.school, user_data.type, meta, { year: get_field(user_data.year, 'name')})
+	return results
+}
+
+exports.get_school = function (user_data) {
+	
+	results = []
+	
+	if (user_data instanceof Array) {
+		for (var i = 0; i < user_data.length; i++) {
+			school_helper(results, user_data[i])
+		}
+	}
+	
+	else {
+		school_helper(results, user_data)
+	}
+	return results
+}
+
+var work_helper = function (results, user_data) {
+	get_data(results, user_data.employer, 'employer', {}, {
+		employer_location: get_field(user_data.location, 'name'),
+		start_date: user_data.start_date ? user_data.start_date : null,
+		end_date: user_data.end_date ? user_data.end_data : null })
+	if (user_data.position) {
+		get_data(results, user_data.position, 'position', {}, {employer: user_data.employer.name})
+	}
+	
+	return results
+}
+
+exports.get_workplace = function (user_data) {
+	results = []
+	if (user_data instanceof Array) {
+		for (var i = 0; i < user_data.length; i++) {
+			work_helper(results, user_data[i])
+		}
+	}
+	else work_helper(results, user_data)
+	
+	return results
+}
+
+exports.get_city = function (field, user_data) {
+	results = []
+	get_data(results, user_data, field, {}, {}) 
+	return results
 }
 
 exports.template = {
-	education: "get_school",
-	hometown: "get_city",
-	location: "get_city",
-	work: "get_workplace",
+	education: "get_school(user_data.education)",
+	hometown: "get_city('hometown', user_data.hometown)",
+	location: "get_city('location', user_data.location)",
+	work: "get_workplace(user_data.work)",
 	/**
 	sports: {
 		name: 'name', 
