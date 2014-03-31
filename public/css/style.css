@@ -84,8 +84,18 @@ body
 
 .edit-design-header
 {
-	margin-left: 10px;
+	margin: 10px 0 0 10px;
 }
+
+.edit-design-header a
+{
+	color: #000;
+}
+.edit-design-header a:hover
+{
+	text-decoration: none;
+}
+
 
 .editing-container
 {
@@ -94,6 +104,9 @@ body
 #editing-screen
 {
 	height: 100%;
+	margin-top: 0;
+	padding-top: 1px;
+	background-color: #fff;
 }
 /* Home Primary Columns and Branding */
 .store-primary-col 

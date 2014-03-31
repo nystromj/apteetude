@@ -257,7 +257,7 @@ jQuery(document).ready(function($) {
 	function addStyleCustomizeListeners()
 	{
 		$('#editing-screen').click(function(e) {
-			if (!$(e.target).is('input[type="submit"]')) 
+			if (!$(e.target).is('input[type="submit"], a') ) 
 			{
 				if (!$(e.target).is(".color-picker, .iris-picker, .iris-picker-inner")) {
 					$('.color-picker').iris('hide');
