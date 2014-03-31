@@ -97,16 +97,13 @@ jQuery(document).ready(function($) {
 		
 	var dataFields, designID, state;
 	// Replace the current state.
-	/*
-history.replaceState({
+	history.replaceState({
 		view: 'store'
-	}, 'Store front', '?view=store');
-*/	
+	}, 'Store front', '?view=store');	
 
 	
 	// On browser changing states:
-	/*
-window.addEventListener("popstate", function(e) {
+	window.addEventListener("popstate", function(e) {
 		state = e.state;
 		if (state.view && state.view == 'store') {
 			$('#editing-screen').hide();
@@ -115,7 +112,6 @@ window.addEventListener("popstate", function(e) {
 			$('.item-panel').addClass('item-panel-clickable');
 		}
 	});
-*/
 	function addClickableListeners()
 	{
 		
@@ -173,7 +169,7 @@ window.addEventListener("popstate", function(e) {
 				newEl.type = 'text';
 				elWrap = document.createElement('div');
 				label = document.createElement('label');
-				label.innerHTML = field.charAt(0).toUpperCase() + field.slice(1);;
+				label.innerHTML = (field.charAt(0).toUpperCase() + field.slice(1)).replace('_', ' ');
 				newEl.value = defText;
 				
 				// Use jQuery from here, because they didn't teach me JS properly.
@@ -203,7 +199,7 @@ window.addEventListener("popstate", function(e) {
 			view: 'design',
 			designID: designID
 		};
-		//history.pushState(state, 'Edit Design', '/store/item/' + designID + '?text=' + defText);
+		history.pushState(state, 'Edit Design', '/store/item/' + designID + '?text=' + defText);
 	} // showEditing(element)
 	
 	function appendUsualSuspects(field, elWrap, templateId)
