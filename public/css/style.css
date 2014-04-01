@@ -4,6 +4,14 @@ body
 {
 	font-family: 'Lora', serif;
 }
+/* 404 Page */
+#body-404{
+  background-color: #000;
+  background-image: url('../img/home-bg.jpg');
+  background-repeat:no-repeat;
+  background-position:center;
+  height: 100%;
+}
 .main
 {
 	background-color: #5ad294;
@@ -147,7 +155,12 @@ body
 {
 	font-weight: 700;
 }
-
+.navbar-brand
+{
+	background-image: url('../img/button_topbar1.png');
+	background-repeat: no-repeat;
+	background-position: center;
+}
 /* Inside primary columns: Item panels */
 .item-panel
 {
