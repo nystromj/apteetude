@@ -8,33 +8,34 @@ var mongoose = require('mongoose')
 
 
 var parse_properties = function(properties) {
-  result ={}
-  return properties.forEach(function(x) {
-  	 result[x.info] = x
+  parsed_properties = {}
+  properties.forEach(function(x) {
+  	 parsed_properties[x.info] = x
   })
-  return result
+
+  return parsed_properties
 }
 
 // updates and new
 
 
-var update_property = function(property, network, user) {
-	Property.findOne({"facebook_page": property.facebook_page, "user": user._id }, function (err, prop) {
+var update_property = function(property, user) {
+	Property.findOne({"facebook_page": property.facebook_page, "user": user._id }, function (err, user_prop) {
 		if (err) {return err}
-		else if (prop) return
-		else {
-			Property.findOne({"facebook_page": property.facebook_page}), function (err, db_prop) {
+		else if (!user_prop) {
+			Property.findOne({"facebook_page": property.facebook_page}, function (err, existing_prop) {
 				if (err) {return err}
 				var name = property.name
 				var meta = property.meta
-				if (db_prop) {
-					name = db_prop.name
-					meta = db_prop.meta
+				if (existing_prop) {
+					name = existing_prop.name
+					meta = existing_prop.meta
 				}
 				var new_prop = new Property ({
 					info: property.info,
 					name: name,
-					network: network,
+					facebook_page: property.facebook_page,
+					network: 'facebook',
 					meta: meta,
 					details: property.details,
 					user: user
@@ -42,17 +43,16 @@ var update_property = function(property, network, user) {
 				new_prop.save(function(err) {
 					if (err) console.log(err)
 				})
-			}
+			})
 		} 
 	})
 }
 
 var save_properties = function (properties, user) {
-	properties.foreach(function(x) {
-		// check if it exists for user,
-		// else check if it exists in general
-		// save
-	})
+
+  for (var i = 0; i < properties.length; i++) {
+    update_property(properties[i], user)
+  }
 }
    
 exports.initProperties = function (req, res, next) {
@@ -69,9 +69,7 @@ exports.initProperties = function (req, res, next) {
 		}
 	}
 	
-	req.properties = properties
-	console.log(properties)
-	//save_properties(properties, user)
+	save_properties(properties, user)
 	
 	next()
 }
@@ -79,15 +77,13 @@ exports.initProperties = function (req, res, next) {
   
 exports.userProperties = function(req, res, next) {
 	if (req.properties) next()
-	var user = req.profile
+	var user = req.user
 	Property.find({'user': user._id}, function (err, properties) {
 		if (err) return res.send('oops')
-		//console.log(properties)
-		var result = parse_properties(properties)
-		//console.log(result)
-		//result['first_name'] = user.facebook.first_name
-		//result['last_name'] = user.facebook.last_name
-		req.properties = result
+		var finished_properties = parse_properties(properties)
+		finished_properties['first_name'] = user.facebook.first_name
+    finished_properties['last_name'] = user.facebook.last_name
+		req.properties = finished_properties
 		next()
 	})	
 }
