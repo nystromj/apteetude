@@ -28,9 +28,8 @@ jQuery(document).ready(function($) {
 		var templateBg = document.createElement('div');
 		var priceTag = document.createElement('div');
 		priceTag.className = "buy-now";
-		var bgOptions = ['panel-red', 'panel-blue', 'panel-green', 'panel-purple', 'panel-yellow' ]
 		
-		templateBg.className = bgOptions[Math.floor(Math.random() * bgOptions.length)] + " item-panel item-panel-clickable " + templateData.background;
+		templateBg.className = "item-panel item-panel-clickable " + templateData.background;
 		template.id = 'template-' + templateData.id;
 		$(template).attr('data-fields', templateData.fields);
 		template.className = 'template';
@@ -50,24 +49,38 @@ jQuery(document).ready(function($) {
 	designsInit = function () {
 		var count = 1;
 		var wrappedTemplate;
+		var bgOptions = ['panel-red', 'panel-blue', 'panel-green', 'panel-purple', 'panel-yellow' ];
+		var template;
+		var bgCount = 0;
+		
 		$.each(templates, function (index, templateData)
 		{
-	
-			wrappedTemplate = wrapTemplate(createTemplate(templateData));
+			template = createTemplate(templateData);
+			
 			if (count == 1)
 			{
+				$(template).addClass(bgOptions[bgCount]);
+				wrappedTemplate = wrapTemplate(template);
 				$('#col-first').append(wrappedTemplate);
 				count++;
 			}
 			else if (count == 2)
 			{
+				$(template).addClass(bgOptions[bgCount]);
+				wrappedTemplate = wrapTemplate(template);
 				$('#col-second').append(wrappedTemplate);
 				count++;
 			}
 			else
 			{
+				$(template).addClass(bgOptions[bgCount]);
+				wrappedTemplate = wrapTemplate(template);
 				$('#col-third').append(wrappedTemplate);
 				count = 1;
+			}
+			if (++bgCount == bgOptions.length)
+			{
+				bgCount = 0;
 			}
 		});
 		
