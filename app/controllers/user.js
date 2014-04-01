@@ -74,7 +74,6 @@ exports.show = function (req, res) {
 exports.store = function (req, res) {
   var user = req.user
   var properties = req.properties;
-  console.log(properties)
   var designs = req.designs
   res.render('user/store', {
       designs: designs,
