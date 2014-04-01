@@ -75,7 +75,10 @@ exports.get_workplace = function (user_data) {
 
 exports.get_city = function (field, user_data) {
 	results = []
-	get_data(results, user_data, field, {}, {}) 
+	results.push(get_one(user_data, field, {}, {}))
+	city = user_data.name.split(', ')
+	results[0].name = city[0]
+	results[0].meta = {province: city[1]}
 	return results
 }
 

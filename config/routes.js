@@ -9,7 +9,7 @@ var async = require('async')
  */
 
 var user = require('../app/controllers/user')
-  , main = require('../app/controllers/main')
+  , index = require('../app/controllers/index')
   , design = require('../app/controllers/design')
   , property = require('../app/controllers/property')
   , auth = require('./middlewares/authorization')
@@ -41,6 +41,6 @@ module.exports = function (app, passport) {
   app.param('userId', user.user)
 
   // home route
-  app.get('/', main.index)
+  app.get('/', index.index)
 
 }
