@@ -86,8 +86,15 @@ module.exports = function (app, passport, db) {
     
     
     app.use(function(err, req, res, next){
-		console.error(err.stack);
-		res.send(500, 'Something broke!');
-	});
+		  console.error(err.stack);
+      res.send(500, 'Something broke!');
+    })
+      
+    app.use(function(req, res) {
+      res.status(404).render('404', {
+        url: req.originalUrl,
+        error: 'Not found'
+      });
+    });
   })
 }

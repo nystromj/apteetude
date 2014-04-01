@@ -5,6 +5,7 @@ var mongoose = require('mongoose')
 var PropertySchema = new Schema({
   info: { type: String, default: '' }, // field categy: "age", "location", etc.
   name: String,
+  facebook_page: Number,
   network: String, 
   meta: {},
   details: {}, 

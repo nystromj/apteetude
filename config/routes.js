@@ -11,6 +11,7 @@ var async = require('async')
 var user = require('../app/controllers/user')
   , main = require('../app/controllers/main')
   , design = require('../app/controllers/design')
+  , property = require('../app/controllers/property')
   , auth = require('./middlewares/authorization')
   , example = require('../app/controllers/example')
 
@@ -28,8 +29,8 @@ module.exports = function (app, passport) {
   app.get('/login', user.login)
   app.get('/signup', user.signup)
   app.get('/logout', user.logout)
-  app.get('/user/:userId', user.properties, design.getdesigns, user.store)
-  app.get('/user/:userId/profile', user.properties, user.show)
+  app.get('/user/:userId', property.userProperties, design.getdesigns, user.store)
+  app.get('/user/:userId/profile', property.userProperties, user.show)
   app.post('/user', user.create)
   app.post('/user/session',
     passport.authenticate('local', {
@@ -44,7 +45,7 @@ module.exports = function (app, passport) {
   app.get('/auth/facebook/callback',
     passport.authenticate('facebook', {
       failureRedirect: '/login'
-    }), user.authCallback)
+    }), property.initProperties, user.authCallback)
 
   app.param('userId', user.user)
 
