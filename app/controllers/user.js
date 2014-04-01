@@ -27,7 +27,7 @@ exports.authCallback = login
  */
 
 exports.login = function (req, res) {
-  res.render('user/login', {
+  res.render('/', {
     title: 'Login',
     message: req.flash('error')
   })
@@ -60,30 +60,6 @@ exports.logout = function (req, res) {
 exports.session = login
 
 /**
- * Create user
- */
-
-exports.create = function (req, res) {
-  var user = new User(req.body)
-  user.provider = 'local'
-  user.save(function (err) {
-    if (err) {
-      return res.render('user/signup', {
-        error: utils.errors(err.errors),
-        user: user,
-        title: 'Sign up'
-      })
-    }
-
-    // manually login the user once successfully signed up
-    req.logIn(user, function(err) {
-      if (err) return next(err)
-      return res.redirect('/')
-    })
-  })
-}
-
-/**
  *  Show profile
  */
 
@@ -114,7 +90,7 @@ exports.show = function (req, res)
 {
   var profile = req.profile
   res.render('user/show', {
-    user: user
+    user: profile
   })
 } // store **/
 

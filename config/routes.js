@@ -25,18 +25,9 @@ module.exports = function (app, passport) {
   app.get('/example/paul', example.paul)
   app.get('/example/jessica', example.jessica)
   
-  // user routes
-  app.get('/login', user.login)
-  app.get('/signup', user.signup)
   app.get('/logout', user.logout)
-  app.get('/user/:userId', property.userProperties, design.getdesigns, user.store)
-  app.get('/user/:userId/profile', property.userProperties, user.show)
-  app.post('/user', user.create)
-  app.post('/user/session',
-    passport.authenticate('local', {
-      failureRedirect: '/login',
-      failureFlash: 'Invalid email or password.'
-    }), user.session)
+  app.get('/user/:userId', auth.requiresLogin, auth.user.hasAuthorization, property.userProperties, design.getdesigns, user.store)
+  app.get('/user/:userId/profile', auth.requiresLogin, auth.user.hasAuthorization, property.userProperties, user.show)
   app.get('/auth/facebook',
     passport.authenticate('facebook', {
       scope: [ 'email', 'user_about_me'],

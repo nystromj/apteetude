@@ -14,22 +14,3 @@ var PropertySchema = new Schema({
 })
 
 mongoose.model('Property', PropertySchema, 'properties'); 
-
-// state
-// city
-// country
-// college
-// movies
-// books
-// activities
-// shows
-// name
-// age
-// high school
-// company
-// music
-
-// extend all children schema.
-// should also include a pointer back to popular designs....
-
-// add likely fields class to users... 
